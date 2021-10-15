@@ -55,6 +55,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 Button btn = findViewById(selectedButtonId);
                 btn.setBackground(getDrawable(R.drawable.button_selected));
 
+
                 switch (selectedButtonId) {
                     case R.id.p1:
                         selectedLevel = "P1";

@@ -38,14 +38,14 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
+                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                         startActivity(intent);
                     } else {
-                        Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
+                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                         startActivity(intent);
                     }
                 } else {
-                    Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(intent);
                     Log.d(TAG, "get failed with ", task.getException());
                     message.setText(task.getException().toString());
