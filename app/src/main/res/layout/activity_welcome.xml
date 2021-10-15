@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainpic2"
+    tools:context=".WelcomeActivity"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <Button
+            android:id="@+id/p1"
+            android:layout_width="156dp"
+            android:layout_height="78dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="88dp"
+            android:background="@drawable/buttonpone"
+            android:drawableLeft="@drawable/butter"
+            android:textStyle="bold"
+            android:text="@string/p1"
+            android:theme="@style/Theme.IsThatEasy2.P1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <Button
+            android:id="@+id/p2"
+            android:layout_width="156dp"
+            android:layout_height="78dp"
+            android:layout_marginTop="88dp"
+            android:background="@drawable/buttonptwo"
+            android:drawableLeft="@drawable/bird"
+            android:text="@string/p2"
+            android:textColor="#FFAB91"
+            android:theme="@style/Theme.IsThatEasy2.P2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.566"
+            app:layout_constraintStart_toEndOf="@+id/p1"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/isthateasy"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/select_level"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.525"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <Button
+            android:id="@+id/p3"
+            android:layout_width="156dp"
+            android:layout_height="78dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="34dp"
+            android:background="@drawable/buttonpthree"
+            android:drawableLeft="@drawable/monkey"
+            android:backgroundTint="@color/bottom_item_background"
+            android:text="@string/p3"
+            android:theme="@style/Theme.IsThatEasy2.P3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/p1" />
+
+        <Button
+            android:id="@+id/p4"
+            android:layout_width="156dp"
+            android:layout_height="78dp"
+            android:layout_marginTop="34dp"
+            android:background="@drawable/buttonpfour"
+            android:drawableLeft="@drawable/gorilla"
+            android:text="@string/p4"
+            android:theme="@style/Theme.IsThatEasy2.P4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/p3"
+            app:layout_constraintTop_toBottomOf="@+id/p2" />
+
+        <Button
+            android:id="@+id/p5"
+            android:layout_width="156dp"
+            android:layout_height="78dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="34dp"
+            android:background="@drawable/buttonpfive"
+            android:drawableLeft="@drawable/giraffe"
+            android:text="@string/p5"
+            android:theme="@style/Theme.IsThatEasy2.P5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/p3" />
+
+        <Button
+            android:id="@+id/p6"
+            android:layout_width="156dp"
+            android:layout_height="78dp"
+            android:layout_marginTop="34dp"
+            android:background="@drawable/buttonpsix"
+            android:drawableLeft="@drawable/elephant"
+            android:text="@string/p6"
+            android:theme="@style/Theme.IsThatEasy2.P6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/p5"
+            app:layout_constraintTop_toBottomOf="@+id/p4" />
+
+        <Button
+            android:id="@+id/welcome_continue"
+            android:layout_width="134dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/button"
+            android:text="@string/btn_continue"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.527"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/p5" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
