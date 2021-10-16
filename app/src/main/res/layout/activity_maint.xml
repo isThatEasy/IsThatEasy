@@ -33,12 +33,15 @@
     </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/homeMenuItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         android:src="@drawable/ic_round_home_24"
         app:layout_anchor="@id/bottomAppBar"
         app:maxImageSize="50dp"
+        app:rippleColor="@color/bottom_item_background"
+        android:layout_marginTop="20dp"
 
         tools:ignore="SpeakableTextPresentCheck" />
 
