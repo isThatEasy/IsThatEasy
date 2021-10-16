@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.isthateasy2.adapters.ContactAdapter;
+import com.example.isthateasy2.adapters.TaskAdapter;
 import com.example.isthateasy2.models.Contact;
+import com.example.isthateasy2.models.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +37,8 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     RecyclerView recyclerView;
-    List<Contact> contactList;
-    ContactAdapter contactAdapter;
+    List<Task> taskList;
+    TaskAdapter taskAdapter;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -77,27 +79,17 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView=(RecyclerView) view.findViewById(R.id.recyclerView);
         loadContact();
-        contactAdapter=new ContactAdapter(contactList);
+//        contactAdapter=new ContactAdapter(contactList);
+        taskAdapter = new TaskAdapter(taskList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setVerticalScrollBarEnabled(true);
-        recyclerView.setAdapter(contactAdapter);
+        recyclerView.setAdapter(taskAdapter);
         return view;
     }
     public void loadContact(){
-        contactList=new ArrayList<Contact>();
-        contactList.add(new Contact("Kwizera","07888888",""));
-        contactList.add(new Contact("Kwizera J","07888888",""));
-        contactList.add(new Contact("Kwizera A","07888888",""));
-        contactList.add(new Contact("Kwizera B","07888888",""));
-        contactList.add(new Contact("Kwizera H","07888888",""));
-        contactList.add(new Contact("Kwizera 4","07888888",""));
-        contactList.add(new Contact("Kwizera 8","07888888",""));
-        contactList.add(new Contact("Kwizera 6","07888888",""));
-        contactList.add(new Contact("Kwizera B","07888888",""));
-        contactList.add(new Contact("Kwizera V","07888888",""));
-        contactList.add(new Contact("Kwizera C","07888888",""));
-        contactList.add(new Contact("Kwizera M","07888888",""));
-        contactList.add(new Contact("Kwizera X","07888888",""));
+        taskList=new ArrayList<Task>();
+        taskList.add(new Task( "title1", "level1", "course1", "topic1", "teacherName1", "description1"));
+        taskList.add(new Task( "title2", "level2", "course2", "topic2", "teacherName2", "description2"));
     }
 }
