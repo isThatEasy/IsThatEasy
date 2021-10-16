@@ -11,4 +11,10 @@
     <string name="select_level">Select Level</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tasktitle">TaskTitle</string>
+    <string name="level">level</string>
+    <string name="attempt">Attempt</string>
+    <string name="teacher_name">teacher name</string>
+    <string name="course">course</string>
+    <string name="topic">topic</string>
+    <string name="in_this_field_will_be_filled_with_description">in this field will be filled with description</string>
 </resources>

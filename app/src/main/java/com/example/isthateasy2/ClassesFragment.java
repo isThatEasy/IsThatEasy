@@ -3,10 +3,18 @@ package com.example.isthateasy2;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.isthateasy2.adapters.SubClassAdapter;
+import com.example.isthateasy2.models.SubClass;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +22,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ClassesFragment extends Fragment {
+    RecyclerView recyclerView;
+    List<SubClass> taskList;
+    SubClassAdapter subClassAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,7 +69,21 @@ public class ClassesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_classes, container, false);
+        View view = inflater.inflate(R.layout.fragment_classes, container, false);
+        recyclerView=(RecyclerView) view.findViewById(R.id.recyclerView_classes);
+        loadSubClasses();
+//        contactAdapter=new ContactAdapter(contactList);
+        subClassAdapter = new SubClassAdapter(taskList);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView.setVerticalScrollBarEnabled(true);
+        recyclerView.setAdapter(subClassAdapter);
+        return view;
+    }
+    public void loadSubClasses(){
+        taskList=new ArrayList<SubClass>();
+        taskList.add(new SubClass( "TeacherName", "School name ", "notfications"));
+        taskList.add(new SubClass( "TeacherName2", "School name2 ", "notfications2"));
+
     }
 }

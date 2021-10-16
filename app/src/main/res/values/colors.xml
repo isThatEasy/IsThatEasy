@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white_b">#80BDBDBD</color>
     <color name="p1">#25DDE3</color>
     <color name="p2">#922525</color>
     <color name="p3">#B849AD</color>
@@ -14,4 +15,10 @@
     <color name="p5">#3242D5</color>
     <color name="p6">#F8F804</color>
     <color name="button">#F99D07</color>
+    <color name="pink">#ffc0cb</color>
+    <color name="pinkBg">#C3FF50A7</color>
+    <color name="pink_hot">#ff69b4</color>
+    <color name="text_color_on_p">#311B92</color>
+    <color name="pink_mistyrose">#ffe4e1</color>
+    <color name="red_front">#DD2C00</color>
 </resources>

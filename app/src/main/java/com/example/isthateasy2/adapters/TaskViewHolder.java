@@ -1,7 +1,5 @@
 package com.example.isthateasy2.adapters;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,9 +15,9 @@ public class TaskViewHolder extends RecyclerView.ViewHolder {
     public TaskViewHolder(@NonNull View itemView) {
         super(itemView);
         course=(TextView)itemView.findViewById(R.id.task_Course);
-        level=(TextView)itemView.findViewById(R.id.task_Level);
+        level=(TextView)itemView.findViewById(R.id.class_teacher_name);
         teacherName=(TextView) itemView.findViewById(R.id.task_TeacherName);
-        title=(TextView) itemView.findViewById(R.id.task_Title);
+        title=(TextView) itemView.findViewById(R.id.class_name);
         description=(TextView) itemView.findViewById(R.id.task_Description);
 
     }

@@ -91,5 +91,7 @@ public class HomeFragment extends Fragment {
         taskList=new ArrayList<Task>();
         taskList.add(new Task( "title1", "level1", "course1", "topic1", "teacherName1", "description1"));
         taskList.add(new Task( "title2", "level2", "course2", "topic2", "teacherName2", "description2"));
+        taskList.add(new Task( "title3", "level3", "course3", "topic3", "teacherName3", "description3"));
+        taskList.add(new Task( "title4", "level4", "course4", "topic4", "teacherName4", "description4"));
     }
 }
