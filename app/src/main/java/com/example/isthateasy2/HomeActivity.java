@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.meMenuItem:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, com.example.isthateasy2.AccountFragment.newInstance("p1", "p2")).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, com.example.isthateasy2.MeFragment.newInstance("p1", "p2")).commit();
                         return true;
                     case R.id.searchMenuItem:
                         getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, com.example.isthateasy2.SearchFragment.newInstance("p1", "p2")).commit();

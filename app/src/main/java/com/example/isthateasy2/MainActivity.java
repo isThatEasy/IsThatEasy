@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         message = findViewById(R.id.message);
 
 
+        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+        startActivity(intent);
         DocumentReference docRef = db.collection("devices").document(android_id);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -38,15 +40,15 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+//                        startActivity(intent);
                     } else {
-                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
+//                        startActivity(intent);
                     }
                 } else {
-                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
+//                    startActivity(intent);
                     Log.d(TAG, "get failed with ", task.getException());
                     message.setText(task.getException().toString());
                 }
