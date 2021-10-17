@@ -8,12 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.isthateasy2.models.User;
+
+import java.util.zip.Inflater;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class MeFragment extends Fragment {
+    User user;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,6 +57,14 @@ public class MeFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+        user = new User("Teacher");
+        switch (user.getTypeOfUser()){
+            case "Teacher":
+                getChildFragmentManager().beginTransaction().replace(R.id.currentUserFragment, com.example.isthateasy2.MeAsTeacherFragment.newInstance("p1", "p2")).commit();
+                break;
+            default:
+                break;
         }
     }
 

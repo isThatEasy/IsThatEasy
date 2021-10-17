@@ -78,7 +78,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView=(RecyclerView) view.findViewById(R.id.recyclerView);
-        loadContact();
+        loadTasks();
 //        contactAdapter=new ContactAdapter(contactList);
         taskAdapter = new TaskAdapter(taskList);
         recyclerView.setHasFixedSize(true);
@@ -87,7 +87,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(taskAdapter);
         return view;
     }
-    public void loadContact(){
+    public void loadTasks(){
         taskList=new ArrayList<Task>();
         taskList.add(new Task( "title1", "level1", "course1", "topic1", "teacherName1", "description1"));
         taskList.add(new Task( "title2", "level2", "course2", "topic2", "teacherName2", "description2"));

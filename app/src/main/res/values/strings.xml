@@ -17,4 +17,23 @@
     <string name="course">course</string>
     <string name="topic">topic</string>
     <string name="in_this_field_will_be_filled_with_description">in this field will be filled with description</string>
+    <string-array name="levels">
+        <item>P1</item>
+        <item>P2</item>
+        <item>P3</item>
+        <item>P4</item>
+        <item>P5</item>
+        <item>P6</item>
+    </string-array>
+    <string-array name="courses">
+        <item>Math</item>
+        <item>Science</item>
+        <item>Kinyarwanda</item>
+        <item>English</item>
+    </string-array>
+    <string-array name="topics">
+        <item>Topic 1</item>
+        <item>Topic 2</item>
+        <item>Topic 3</item>
+    </string-array>
 </resources>
