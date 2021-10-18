@@ -17,16 +17,17 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".LoginChoosingActivity"
             android:exported="false" />
         <activity
             android:name=".AccountActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginChoosingActivity"
+            android:name=".WelcomeActivity"
+
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
