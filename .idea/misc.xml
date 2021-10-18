@@ -9,29 +9,18 @@
         <entry key="..\:/Users/User/Documents/IsThatEasy/app/src/main/res/layout/activity_login_chooosing.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/Documents/IsThatEasy/app/src/main/res/layout/activity_login_page.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/Documents/IsThatEasy/app/src/main/res/layout/activity_main.xml" value="0.11956521739130435" />
-        <entry key="..\:/Users/User/Documents/IsThatEasy/app/src/main/res/layout/activity_register_as_school.xml" value="0.14" />
-        <entry key="..\:/Users/CLAUDETTE/Documents/y3/projects/IsThatEasy/app/src/main/res/drawable/input_design.xml" value="0.2203125" />
-        <entry key="..\:/Users/CLAUDETTE/Documents/y3/projects/IsThatEasy/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/CLAUDETTE/Documents/y3/projects/IsThatEasy/app/src/main/res/layout/activity_welcome.xml" value="0.1" />
-        <entry key="..\:/Users/CLAUDETTE/Documents/y3/projects/IsThatEasy/app/src/main/res/layout/add_new_level.xml" value="0.22" />
-        <entry key="..\:/Users/CLAUDETTE/Documents/y3/projects/IsThatEasy/app/src/main/res/layout/add_task_popup.xml" value="0.2" />
-        <entry key="..\:/Users/CLAUDETTE/Documents/y3/projects/IsThatEasy/app/src/main/res/layout/fragment_me_as_teacher.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/User/Documents/IsThatEasy/app/src/main/res/layout/activity_register_as_school.xml" value="0.25" />
+        <entry key="..\:/Users/User/Documents/IsThatEasy/app/src/main/res/layout/fragment_me_as_teacher.xml" value="0.1" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/drawable-v24/ic_menu.xml" value="0.1" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/drawable/bird.xml" value="0.28489583333333335" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/drawable/button.xml" value="0.20555555555555555" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/drawable/buttonpthree.xml" value="0.28489583333333335" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/activity_account.xml" value="0.26875" />
-        <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/activity_add_task.xml" value="0.33" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/activity_home.xml" value="0.26875" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/activity_main.xml" value="0.26875" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/activity_maint.xml" value="0.26875" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/activity_welcome.xml" value="0.26875" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/fragment_account.xml" value="0.1" />
-        <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/add_level_popup.xml" value="0.18489583333333334" />
-        <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/add_task_menu_layout.xml" value="0.26875" />
-        <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/add_task_popup.xml" value="0.18489583333333334" />
-        <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/fragment_account.xml" value="0.25" />
-        <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/fragment_classes.xml" value="0.26875" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/fragment_help.xml" value="0.1" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/fragment_home.xml" value="0.2504528985507246" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/fragment_me.xml" value="0.2504528985507246" />
@@ -40,8 +29,6 @@
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/fragment_search.xml" value="0.2504528985507246" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/row_contact.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/row_task.xml" value="0.5" />
-        <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/row_task.xml" value="0.33" />
-        <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/menu/add_task_menu.xml" value="0.26875" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/menu/bottom_menu.xml" value="0.1" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.15572916666666667" />
       </map>
