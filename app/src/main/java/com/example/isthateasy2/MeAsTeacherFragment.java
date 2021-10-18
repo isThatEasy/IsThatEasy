@@ -28,7 +28,7 @@ public class MeAsTeacherFragment extends Fragment {
     RecyclerView recyclerView;
     List<Task> taskList;
     TaskAdapter taskAdapter;
-    Button showPopupBtn, closePopupBtn;
+    Button showPopupBtn, closePopupBtn, showPopupBtnLevel,closePopupBtnLevel;
     PopupWindow popupWindow;
     LinearLayout linearLayout1;
 
@@ -88,11 +88,34 @@ public class MeAsTeacherFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setVerticalScrollBarEnabled(true);
         recyclerView.setAdapter(taskAdapter);
+        View addLevelPopupView = LayoutInflater.from(getActivity()).inflate(R.layout.add_new_level, null);
+        final PopupWindow popupWindowLevel = new PopupWindow(addLevelPopupView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+
+        showPopupBtnLevel = view.findViewById(R.id.add_level);
+        showPopupBtnLevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindowLevel.showAsDropDown(addLevelPopupView, 0, 0);
+                closePopupBtnLevel = addLevelPopupView.findViewById(R.id.closePopupBtnLevel);
+
+                closePopupBtnLevel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindowLevel.dismiss();
+                    }
+                });
+
+            }
+        });
+
+
+
+
 
         View popupView = LayoutInflater.from(getActivity()).inflate(R.layout.add_task_popup, null);
         final PopupWindow popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
 
-        showPopupBtn = (Button) view.findViewById(R.id.add_task);
+        showPopupBtn = view.findViewById(R.id.add_task);
         showPopupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
