@@ -26,9 +26,10 @@
             android:id="@+id/add_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text="Add Level"
+            android:theme="@style/Theme.IsThatEasy2.P3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -36,9 +37,12 @@
             android:id="@+id/add_course"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="63dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="10dp"
             android:text="Add Course"
+            android:theme="@style/Theme.IsThatEasy2.P3"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/add_level"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,12 +50,11 @@
             android:id="@+id/add_task"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="63dp"
+            android:layout_marginTop="108dp"
             android:text="Add Task"
+            android:theme="@style/Theme.IsThatEasy2.P3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/add_course"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -61,7 +64,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="16dp"
             android:text="Level"
-            android:textColor="@color/button"
+            android:textColor="@color/red_front"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -72,7 +75,7 @@
             android:layout_marginStart="80dp"
             android:layout_marginTop="16dp"
             android:text="Course"
-            android:textColor="@color/button"
+            android:textColor="@color/red_front"
             app:layout_constraintStart_toEndOf="@+id/textView5"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -84,7 +87,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="70dp"
             android:text="Topic"
-            android:textColor="@color/button"
+            android:textColor="@color/red_front"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/textView7"
@@ -127,17 +130,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
+
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="44dp"
-            android:textSize="20sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="84dp"
             android:text="Task you creates"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_level" />
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/teacherRecyclerView"
