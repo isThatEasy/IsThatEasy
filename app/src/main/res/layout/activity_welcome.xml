@@ -78,7 +78,7 @@
             android:drawableLeft="@drawable/monkey"
             android:backgroundTint="@color/bottom_item_background"
             android:text="@string/p3"
-            android:theme="@style/Theme.IsThatEasy2.P3"
+            android:theme="@style/Theme.IsThatEasy2.Button_selected"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/p1" />
 
@@ -116,7 +116,7 @@
             android:background="@drawable/buttonpsix"
             android:drawableLeft="@drawable/elephant"
             android:text="@string/p6"
-            android:theme="@style/Theme.IsThatEasy2.P6"
+            android:theme="@style/Theme.IsThatEasy2.P6New"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/p5"
             app:layout_constraintTop_toBottomOf="@+id/p4" />
@@ -129,6 +129,7 @@
             android:background="@drawable/button"
             android:text="@string/btn_continue"
             android:textColor="@color/black"
+            android:theme="@style/Theme.IsThatEasy2.P3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.527"
             app:layout_constraintStart_toStartOf="parent"

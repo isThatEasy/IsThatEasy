@@ -1,5 +1,4 @@
 package com.example.isthateasy2;
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Spinner;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import com.example.isthateasy2.adapters.TaskAdapter;
 import com.example.isthateasy2.models.Task;
@@ -26,6 +28,9 @@ public class MeAsTeacherFragment extends Fragment {
     RecyclerView recyclerView;
     List<Task> taskList;
     TaskAdapter taskAdapter;
+    Button showPopupBtn, closePopupBtn, showPopupBtnLevel,closePopupBtnLevel;
+    PopupWindow popupWindow;
+    LinearLayout linearLayout1;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,6 +88,51 @@ public class MeAsTeacherFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setVerticalScrollBarEnabled(true);
         recyclerView.setAdapter(taskAdapter);
+        View addLevelPopupView = LayoutInflater.from(getActivity()).inflate(R.layout.add_new_level, null);
+        final PopupWindow popupWindowLevel = new PopupWindow(addLevelPopupView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+
+        showPopupBtnLevel = view.findViewById(R.id.add_level);
+        showPopupBtnLevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindowLevel.showAsDropDown(addLevelPopupView, 0, 0);
+                closePopupBtnLevel = addLevelPopupView.findViewById(R.id.closePopupBtnLevel);
+
+                closePopupBtnLevel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindowLevel.dismiss();
+                    }
+                });
+
+            }
+        });
+
+
+
+
+
+        View popupView = LayoutInflater.from(getActivity()).inflate(R.layout.add_task_popup, null);
+        final PopupWindow popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+
+        showPopupBtn = view.findViewById(R.id.add_task);
+        showPopupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.showAsDropDown(popupView, 0, 0);
+                closePopupBtn = (Button) popupView.findViewById(R.id.closePopupBtn);
+
+                closePopupBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
+
+            }
+        });
+
+
         return view;
     }
     public void loadTasks(){
