@@ -4,21 +4,46 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#80000000"
+        android:background="@color/pink_mistyrose"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="10px">
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/button"
+        android:textSize="30dp"
+        android:text="Choose way of answering" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="This is a popup window.."
-            android:textColor="#fff" />
 
-        <Button
-            android:id="@+id/closePopupBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Close" />
+    <Button
+        android:id="@+id/multiple_choice"
+        android:layout_width="match_parent"
+        android:layout_marginTop="40dp"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.IsThatEasy2.P3"
+        android:text="Multiple choice" />
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/drop_down"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.IsThatEasy2.P3"
+        android:text="DropDown" />
+    <Button
+        android:id="@+id/typing_an_answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.IsThatEasy2.P3"
+        android:text="Typing an Answer" />
+    <Button
+        android:id="@+id/closePopupBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="cancel" />
+
+
+
+</LinearLayout>

@@ -25,7 +25,7 @@
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/add_level_popup.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/add_new_level.xml" value="0.26875" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/add_task_menu_layout.xml" value="0.26875" />
-        <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/add_task_popup.xml" value="0.18489583333333334" />
+        <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/add_task_popup.xml" value="0.33" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/fragment_account.xml" value="0.25" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/fragment_classes.xml" value="0.26875" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/fragment_help.xml" value="0.1" />
@@ -38,6 +38,7 @@
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/row_classes.xml" value="0.25" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/row_contact.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/row_task.xml" value="0.33" />
+        <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/layout/typing_an_answer_popup.xml" value="0.26875" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/menu/add_task_menu.xml" value="0.26875" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/menu/bottom_menu.xml" value="0.1" />
         <entry key="..\:/Users/pater/AndroidStudioProjects/IsThatEasy2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.15572916666666667" />
