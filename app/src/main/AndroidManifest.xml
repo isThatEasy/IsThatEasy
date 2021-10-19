@@ -19,7 +19,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".WelcomeActivity"
             android:exported="false" />
         <activity
             android:name=".LoginChoosingActivity"
@@ -28,7 +28,7 @@
             android:name=".AccountActivity"
             android:exported="false" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
