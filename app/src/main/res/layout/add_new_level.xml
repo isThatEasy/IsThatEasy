@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/pink_mistyrose"
         android:gravity="center"
         android:orientation="vertical"
@@ -34,9 +34,11 @@
             android:inputType="textPersonName"
 
             android:minHeight="48dp"
-            android:text="Name"
+            android:hint="Name"
             android:background="@drawable/input_design"
-            />
+            >
+            <requestFocus />
+        </EditText>
 
         <Button
             android:id="@+id/button"

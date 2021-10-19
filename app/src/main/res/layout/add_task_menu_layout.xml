@@ -9,7 +9,7 @@
     >
 
     <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
+        android:id="@+id/bottomAppBar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -19,7 +19,7 @@
         app:hideOnScroll="true"
         >
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
+            android:id="@+id/bottomNavigationViewForAddTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:menu="@menu/add_task_menu"
