@@ -13,17 +13,138 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class AddTaskActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Button closePopupBtn, multipleChoice, dropDown, typingAnAnswer, typingAnswerCancelButton;
+    FloatingActionButton homeMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
+        homeMenuItem = findViewById(R.id.addMenuItem);
+        homeMenuItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //reference from https://android--code.blogspot.com/2016/01/android-popup-window-example.html
+
+
+                LayoutInflater inflater = (LayoutInflater) AddTaskActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
+                View popupView = inflater.inflate(R.layout.add_task_popup, null);
+                PopupWindow popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+
+                popupWindow.showAsDropDown(popupView, 0, 0);
+                popupWindow.setFocusable(true);
+                closePopupBtn = (Button) popupView.findViewById(R.id.closePopupBtn);
+
+                View.OnClickListener onClickListener_choosing_answering_way = new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int id = view.getId();
+                        switch (id) {
+                            case R.id.drop_down:
+                                popupWindow.dismiss();
+                                break;
+                            case R.id.typing_an_answer:
+                                popupWindow.dismiss();
+                                //this will called when he click on typing an answer as way of answering
+
+
+                                View popupViewTypingAnswer = inflater.inflate(R.layout.typing_an_answer_popup, null);
+                                PopupWindow popupWindowTypingAnswer = new PopupWindow(popupViewTypingAnswer, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+
+                                popupWindowTypingAnswer.showAsDropDown(popupViewTypingAnswer, 0, 0);
+                                popupWindowTypingAnswer.setFocusable(true);
+                                typingAnswerCancelButton = (Button) popupViewTypingAnswer.findViewById(R.id.typing_an_answer_cancel_btn);
+
+                                typingAnswerCancelButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        popupWindowTypingAnswer.dismiss();
+                                    }
+                                });
+
+
+                                break;
+                            case R.id.multiple_choice:
+                                popupWindow.dismiss();
+                                //this will called when he click on Multiple choose as way of answering
+
+
+                                View popupViewMultipleChoose = inflater.inflate(R.layout.add_multiple_choose_popup, null);
+                                PopupWindow popupWindowMUltipleChoose = new PopupWindow(popupViewMultipleChoose, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+
+                                popupWindowMUltipleChoose.showAsDropDown(popupViewMultipleChoose, 0, 0);
+                                popupWindowMUltipleChoose.setFocusable(true);
+                                typingAnswerCancelButton = (Button) popupViewMultipleChoose.findViewById(R.id.multiple_choose_cancel_btn);
+
+                                typingAnswerCancelButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        popupWindowMUltipleChoose.dismiss();
+                                    }
+                                });
+
+                                LinearLayout linearLayout = popupViewMultipleChoose.findViewById(R.id.linear_Layout_in_multiple_choose);
+                                Button addOption = popupViewMultipleChoose.findViewById(R.id.multiple_choose_add_option);
+                                addOption.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        View optionView = inflater.inflate(R.layout.new_option_layout_m_c, null);
+                                        linearLayout.addView(optionView);
+                                        Button btn = optionView.findViewById(R.id.delete_option);
+                                        btn.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                linearLayout.removeView(optionView);
+                                            }
+                                        });
+                                        Button btnAdd = popupViewMultipleChoose.findViewById(R.id.multiple_choose_add_btn);
+                                        btnAdd.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                LinearLayout questionLayout = findViewById(R.id.created_question_linear_layout);
+
+                                                View createdQuestionLayout = inflater.inflate(R.layout.created_question_layout, null);
+//                                                        this will call layout that will display created questions
+//                                                        passing parameters into view
+                                                questionLayout.addView(createdQuestionLayout);
+                                                popupWindowMUltipleChoose.dismiss();
+                                            }
+                                        });
+                                    }
+                                });
+
+
+                                break;
+                            default:
+                                return;
+                        }
+
+                    }
+                };
+
+                dropDown = popupView.findViewById(R.id.drop_down);
+                typingAnAnswer = popupView.findViewById(R.id.typing_an_answer);
+                multipleChoice = popupView.findViewById(R.id.multiple_choice);
+
+                dropDown.setOnClickListener(onClickListener_choosing_answering_way);
+                typingAnAnswer.setOnClickListener(onClickListener_choosing_answering_way);
+                multipleChoice.setOnClickListener(onClickListener_choosing_answering_way);
+
+                closePopupBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
+
+            }
+        });
 
         bottomNavigationView = findViewById(R.id.bottomNavigationViewForAddTask);
         bottomNavigationView.setBackground(null);
@@ -32,101 +153,6 @@ public class AddTaskActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.settingMenuItem:
-                        return true;
-                    case R.id.addMenuItem:
-                        //reference from https://android--code.blogspot.com/2016/01/android-popup-window-example.html
-
-
-                        LayoutInflater inflater = (LayoutInflater) AddTaskActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
-                        View popupView = inflater.inflate(R.layout.add_task_popup, null);
-                        PopupWindow popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-
-                        popupWindow.showAsDropDown(popupView, 0, 0);
-                        popupWindow.setFocusable(true);
-                        closePopupBtn = (Button) popupView.findViewById(R.id.closePopupBtn);
-
-                        View.OnClickListener onClickListener_choosing_answering_way = new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                int id = view.getId();
-                                switch (id) {
-                                    case R.id.drop_down:
-                                        popupWindow.dismiss();
-                                        break;
-                                    case R.id.typing_an_answer:
-                                        popupWindow.dismiss();
-                                        //this will called when he click on typing an answer as way of answering
-
-
-                                        View popupViewTypingAnswer = inflater.inflate(R.layout.typing_an_answer_popup, null);
-                                        PopupWindow popupWindowTypingAnswer = new PopupWindow(popupViewTypingAnswer, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-
-                                        popupWindowTypingAnswer.showAsDropDown(popupViewTypingAnswer, 0, 0);
-                                        popupWindowTypingAnswer.setFocusable(true);
-                                        typingAnswerCancelButton = (Button) popupViewTypingAnswer.findViewById(R.id.typing_an_answer_cancel_btn);
-
-                                        typingAnswerCancelButton.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                popupWindowTypingAnswer.dismiss();
-                                            }
-                                        });
-
-
-                                        break;
-                                    case R.id.multiple_choice:
-                                        popupWindow.dismiss();
-                                        //this will called when he click on Multiple choose as way of answering
-
-
-                                        View popupViewMultipleChoose = inflater.inflate(R.layout.add_multiple_choose_popup, null);
-                                        PopupWindow popupWindowMUltipleChoose = new PopupWindow(popupViewMultipleChoose, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-
-                                        popupWindowMUltipleChoose.showAsDropDown(popupViewMultipleChoose, 0, 0);
-                                        popupWindowMUltipleChoose.setFocusable(true);
-                                        typingAnswerCancelButton = (Button) popupViewMultipleChoose.findViewById(R.id.multiple_choose_cancel_btn);
-
-                                        typingAnswerCancelButton.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                popupWindowMUltipleChoose.dismiss();
-                                            }
-                                        });
-
-                                        LinearLayout linearLayout = popupViewMultipleChoose.findViewById(R.id.linear_Layout_in_multiple_choose);
-                                        Button addOption = popupViewMultipleChoose.findViewById(R.id.multiple_choose_add_option);
-                                        addOption.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View view) {
-                                                View optionView = inflater.inflate(R.layout.new_option_layout_m_c, null);
-                                                linearLayout.addView(optionView);
-                                            }
-                                        });
-
-
-                                        break;
-                                    default:
-                                        return;
-                                }
-
-                            }
-                        };
-
-                        dropDown = popupView.findViewById(R.id.drop_down);
-                        typingAnAnswer = popupView.findViewById(R.id.typing_an_answer);
-                        multipleChoice = popupView.findViewById(R.id.multiple_choice);
-
-                        dropDown.setOnClickListener(onClickListener_choosing_answering_way);
-                        typingAnAnswer.setOnClickListener(onClickListener_choosing_answering_way);
-                        multipleChoice.setOnClickListener(onClickListener_choosing_answering_way);
-
-                        closePopupBtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                popupWindow.dismiss();
-                            }
-                        });
-
                         return true;
                     case R.id.FinishMenuItem:
 

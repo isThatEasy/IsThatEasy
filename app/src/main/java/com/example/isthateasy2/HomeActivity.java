@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
-    FloatingActionButton homeMenuItem;
+//    FloatingActionButton homeMenuItem;
 
     BottomNavigationView bottomNavigationView;
     @Override
@@ -28,16 +28,19 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        homeMenuItem = findViewById(R.id.homeMenuItem);
+//        homeMenuItem = findViewById(R.id.homeMenuItem);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setBackground(null);
-        bottomNavigationView.setSelectedItemId(R.id.holderMenuItem);
+        bottomNavigationView.setSelectedItemId(R.id.homeMenuItem);
         getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, com.example.isthateasy2.HomeFragment.newInstance("p1", "p2")).commit();
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.homeMenuItem:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, com.example.isthateasy2.HomeFragment.newInstance("p1", "p2")).commit();
+                        return true;
                     case R.id.meMenuItem:
                         getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, com.example.isthateasy2.MeFragment.newInstance("p1", "p2")).commit();
                         return true;
@@ -56,14 +59,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        homeMenuItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, com.example.isthateasy2.HomeFragment.newInstance("p1", "p2")).commit();
-                bottomNavigationView.setSelectedItemId(R.id.holderMenuItem);
-
-            }
-        });
+//        homeMenuItem.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, com.example.isthateasy2.HomeFragment.newInstance("p1", "p2")).commit();
+//                bottomNavigationView.setSelectedItemId(R.id.holderMenuItem);
+//
+//            }
+//        });
     }
 
 }
