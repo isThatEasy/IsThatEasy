@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/each_option_edit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
@@ -40,7 +40,7 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/ic_baseline_close_24"
         android:theme="@style/Theme.IsThatEasy2.P3"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName4"
+        app:layout_constraintStart_toEndOf="@+id/each_option_edit_text"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

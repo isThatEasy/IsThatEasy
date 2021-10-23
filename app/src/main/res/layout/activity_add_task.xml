@@ -26,6 +26,45 @@ android:id="@+id/linearLayout1"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 tools:layout_editor_absoluteY="637dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="28dp"
+                        android:textSize="20sp"
+                        android:layout_marginEnd="30dp"
+                        android:text="categorize it!"/>
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:minWidth="60dp"
+                        android:layout_marginEnd="5dp"
+                        android:entries="@array/levels"
+                        />
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/courses"
+                        android:minHeight="48dp"
+                        />
+                </LinearLayout>
+                <EditText
+                    android:id="@+id/editTextTopic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="15dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/input_design"
+                    android:ems="10"
+                    android:hint="type topic here"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"/>
 
                 <TextView
                     android:id="@+id/textView10"
@@ -34,12 +73,13 @@ android:id="@+id/linearLayout1"
                     android:layout_marginStart="28dp"
                     android:text="Title" />
 
+
                 <EditText
                     android:id="@+id/editTextTextPersonName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="28dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="2dp"
                     android:background="@drawable/input_design"
                     android:ems="10"
                     android:hint="type title of task"
@@ -47,13 +87,12 @@ android:id="@+id/linearLayout1"
                     android:minHeight="48dp"
                     android:paddingStart="15dp" />
 
-
                 <TextView
                     android:id="@+id/textView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="28dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginTop="10dp"
                     android:text="Description" />
 
                 <EditText
@@ -61,7 +100,7 @@ android:id="@+id/linearLayout1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="28dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="2dp"
                     android:background="@drawable/input_design"
                     android:ems="10"
                     android:hint="type description here"
