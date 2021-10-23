@@ -31,40 +31,101 @@ android:id="@+id/linearLayout1"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
                     android:orientation="horizontal">
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="28dp"
-                        android:textSize="20sp"
-                        android:layout_marginEnd="30dp"
-                        android:text="categorize it!"/>
-                    <Spinner
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/textViewLevel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="@string/level" />
+
+                        <Spinner
+                            android:id="@+id/levelsSpinnerAddTask"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:minWidth="60dp"
+                            android:layout_marginEnd="5dp"
+                            android:entries="@array/levels"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minHeight="48dp"
-                        android:minWidth="60dp"
-                        android:layout_marginEnd="5dp"
-                        android:entries="@array/levels"
-                        />
-                    <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:entries="@array/courses"
-                        android:minHeight="48dp"
-                        />
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/textViewCourse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="28dp"
+                            android:text="Course" />
+                        <Spinner
+                            android:id="@+id/coursesSpinnerAddTask"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/courses"
+                            android:layout_marginStart="20dp"
+                            android:minHeight="48dp"
+                            />
+                    </LinearLayout>
+
+
                 </LinearLayout>
-                <EditText
-                    android:id="@+id/editTextTopic"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="15dp"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/input_design"
-                    android:ems="10"
-                    android:hint="type topic here"
-                    android:inputType="textPersonName"
-                    android:minHeight="48dp"/>
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/textViewTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="28dp"
+                            android:text="Class" />
+                        <Spinner
+                            android:id="@+id/classSpinnerAddTask"
+                            android:minHeight="48dp"
+                            android:minWidth="60dp"
+                            android:layout_marginBottom="12dp"
+                            android:layout_marginStart="18dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/courses">
+
+                        </Spinner>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/textViewTopic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="28dp"
+                            android:text="Topic" />
+                        <EditText
+                            android:id="@+id/topicEditText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:ems="10"
+                            android:hint="type topic here"
+                            android:inputType="textPersonName"
+                            android:minHeight="48dp"
+                            android:paddingStart="15dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
 
                 <TextView
                     android:id="@+id/textView10"
@@ -75,7 +136,7 @@ android:id="@+id/linearLayout1"
 
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/titleEditText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="28dp"
@@ -96,7 +157,7 @@ android:id="@+id/linearLayout1"
                     android:text="Description" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName2"
+                    android:id="@+id/descriptionEditText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="28dp"

@@ -1,5 +1,6 @@
 package com.example.isthateasy2.models;
 
+
 import java.util.ArrayList;
 
 public class Question {
@@ -7,6 +8,15 @@ public class Question {
     private ArrayList<String> options;
     private String answer;
     private int marks;
+    private String wayOfAnswering;
+
+    public String getWayOfAnswering() {
+        return wayOfAnswering;
+    }
+
+    public void setWayOfAnswering(String wayOfAnswering) {
+        this.wayOfAnswering = wayOfAnswering;
+    }
 
     public Question() {
         options = new ArrayList<>();

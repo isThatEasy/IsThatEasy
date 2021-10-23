@@ -1,6 +1,8 @@
 package com.example.isthateasy2;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,37 +11,49 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.isthateasy2.models.Question;
+import com.example.isthateasy2.models.Task;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
 public class AddTaskActivity extends AppCompatActivity {
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     BottomNavigationView bottomNavigationView;
     Button closePopupBtn, multipleChoice, dropDown, typingAnAnswer, typingAnswerCancelButton,addOption, btnAdd;
     FloatingActionButton addMenuItem;
-    ArrayList<Question> questions;
+    Task task;
     //just index, nothing more
     int optionIndex = 100000;
     PopupWindow popupWindow_choose_way_of_answering, popupWindowMUltipleChoose;
     View addTaskPopup, popupViewTypingAnswer, popupViewMultipleChoose, optionView;
     LinearLayout linearLayout;
-    EditText optionEditText;
+    EditText optionEditText, titleEditText, descriptionEditText, topicEditText;
+    Spinner levelSpinner, courseSpinner, classSpinner;
     LayoutInflater inflater;
+    Question question;
+
+    private static final String TAG = "FirebaseLog";
+    String testingClassId = "Ysqx4oNwLoBypiBaKp1G";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
-        questions = new ArrayList<>();
+        task = new Task();
 
         addMenuItem = findViewById(R.id.addMenuItem);
         addMenuItem.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +85,7 @@ public class AddTaskActivity extends AppCompatActivity {
                                 //this will called when he click on typing an answer as way of answering
 
 
-                                wayOfAnsweringOption();
+                                typingAnAnswerOption();
 
 
                                 break;
@@ -110,15 +124,59 @@ public class AddTaskActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigationViewForAddTask);
         bottomNavigationView.setBackground(null);
+        bottomNavigationView.setSelectedItemId(R.id.holderMenuItem);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.settingMenuItem:
                         return true;
-                    case R.id.FinishMenuItem:
+                    case R.id.FinishMenuItem: {
+                        titleEditText = findViewById(R.id.titleEditText);
+                        String title = titleEditText.getText().toString();
+
+                        descriptionEditText = findViewById(R.id.descriptionEditText);
+                        String description = descriptionEditText.getText().toString();
+
+                        topicEditText = findViewById(R.id.topicEditText);
+                        String topic = topicEditText.getText().toString();
+
+                        levelSpinner = findViewById(R.id.levelsSpinnerAddTask);
+                        String level = levelSpinner.getSelectedItem().toString();
+
+                        courseSpinner = findViewById(R.id.coursesSpinnerAddTask);
+                        String course = courseSpinner.getSelectedItem().toString();
+
+                        classSpinner = findViewById(R.id.classSpinnerAddTask);
+                        String className = classSpinner.getSelectedItem().toString();
+
+
+                        task.setTitle(title);
+                        task.setDescription(description);
+                        task.setTopic(topic);
+                        task.setLevel(level);
+                        task.setCourse(course);
+                        task.setClassName(className);
+
+//                        saveTask();
+                        db.collection("classes").document("p1").collection("math").document(testingClassId).collection("tasks").add(task)
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                                        finish();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w(TAG, "Error adding document", e);
+                                    }
+                                });
+
 
                         return true;
+                    }
                     default:
                         return false;
                 }
@@ -126,7 +184,11 @@ public class AddTaskActivity extends AppCompatActivity {
         });
     }
 
-    private void wayOfAnsweringOption() {
+//    private void saveTask() {
+//        //perform firebase saving
+//    }
+
+    private void typingAnAnswerOption() {
         popupViewTypingAnswer = inflater.inflate(R.layout.typing_an_answer_popup, null);
         PopupWindow popupWindowTypingAnswer = new PopupWindow(popupViewTypingAnswer, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
 
@@ -143,7 +205,8 @@ public class AddTaskActivity extends AppCompatActivity {
     }
 
     private void multipleChoiceOption(){
-        Question question = new Question();
+        question = new Question();
+        question.setWayOfAnswering("multipleChoice");
 
 
         popupViewMultipleChoose = inflater.inflate(R.layout.add_multiple_choose_popup, null);
@@ -214,7 +277,7 @@ public class AddTaskActivity extends AppCompatActivity {
                         marksArea.setText(String.valueOf(question.getMarks()));
 
                         // add question to others
-                        questions.add(question);
+                        task.addQuestion(question);
                         questionLayout.addView(createdQuestionLayout);
                         popupWindowMUltipleChoose.dismiss();
                         optionIndex = 0;
