@@ -159,7 +159,7 @@ public class AddTaskActivity extends AppCompatActivity {
                         task.setClassName(className);
 
 //                        saveTask();
-                        db.collection("classes").document("p1").collection("math").document(testingClassId).collection("tasks").add(task)
+                        db.collection("tasks").document(task.getLevel()).collection(task.getCourse()).add(task)
                                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                     @Override
                                     public void onSuccess(DocumentReference documentReference) {
