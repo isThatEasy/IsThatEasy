@@ -1,5 +1,7 @@
 package com.example.isthateasy2.models;
 
+import java.util.ArrayList;
+
 public class Task {
     private String title;
     private String level;
@@ -7,6 +9,28 @@ public class Task {
     private String topic;
     private String teacherName;
     private String description;
+    private ArrayList<Question> questions;
+    private String className;
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public void addQuestion(Question question){
+        questions.add(question);
+    }
+
+    public ArrayList<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(ArrayList<Question> questions) {
+        this.questions = questions;
+    }
 
     public Task(String title, String level, String course, String topic, String teacherName, String description) {
         this.title = title;
@@ -15,9 +39,12 @@ public class Task {
         this.topic = topic;
         this.teacherName = teacherName;
         this.description = description;
+
+        questions = new ArrayList<>();
     }
 
     public Task() {
+        questions = new ArrayList<>();
     }
 
     public String getTitle() {
