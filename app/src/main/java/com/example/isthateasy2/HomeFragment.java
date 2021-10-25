@@ -1,5 +1,6 @@
 package com.example.isthateasy2;
 
+import android.app.ProgressDialog;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -13,6 +14,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
 
 import com.example.isthateasy2.adapters.ContactAdapter;
 import com.example.isthateasy2.adapters.TaskAdapter;
@@ -44,6 +49,10 @@ public class HomeFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String testingClassId = "Ysqx4oNwLoBypiBaKp1G";
+    Spinner levelSelector, courseSelector;
+    String selectedLevel="P1", selectedCourse="Math";
+    ProgressBar progressBar;
+    LinearLayout loadingPart;
 
 
 
@@ -94,6 +103,54 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        loadingPart = view.findViewById(R.id.loadingPartInHome);
+
+        levelSelector = view.findViewById(R.id.levelsSpinnerHome);
+        courseSelector = view.findViewById(R.id.coursesSpinnerHome);
+
+
+        levelSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                loadingPart.addView(new ProgressBar(getContext()));
+                selectedLevel = adapterView.getItemAtPosition(i).toString();
+
+                taskList.clear();
+                loadTasks();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        courseSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedCourse = adapterView.getItemAtPosition(i).toString();
+
+                loadingPart.addView(new ProgressBar(getContext()));
+                taskList.clear();
+                loadTasks();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+
+
+
+
+
+
+
         recyclerView=(RecyclerView) view.findViewById(R.id.recyclerView);
         loadTasks();
 //        contactAdapter=new ContactAdapter(contactList);
@@ -106,7 +163,7 @@ public class HomeFragment extends Fragment {
     }
     public void loadTasks(){
 
-        db.collection("tasks").document("P1").collection("Math")
+        db.collection("tasks").document(selectedLevel).collection(selectedCourse)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -120,6 +177,7 @@ public class HomeFragment extends Fragment {
 
                             }
                             recyclerView.setAdapter(taskAdapter);
+                            loadingPart.removeAllViews();
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }

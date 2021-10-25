@@ -1,5 +1,6 @@
 package com.example.isthateasy2;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +45,7 @@ public class AddTaskActivity extends AppCompatActivity {
     Spinner levelSpinner, courseSpinner, classSpinner;
     LayoutInflater inflater;
     Question question;
+    ProgressDialog progress;
 
     private static final String TAG = "FirebaseLog";
     String testingClassId = "Ysqx4oNwLoBypiBaKp1G";
@@ -54,6 +56,7 @@ public class AddTaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_task);
 
         task = new Task();
+        progress = new ProgressDialog(AddTaskActivity.this);
 
         addMenuItem = findViewById(R.id.addMenuItem);
         addMenuItem.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +135,12 @@ public class AddTaskActivity extends AppCompatActivity {
                     case R.id.settingMenuItem:
                         return true;
                     case R.id.FinishMenuItem: {
+
+                        progress.setTitle("Loading");
+                        progress.setMessage("Wait while loading...");
+                        progress.setCanceledOnTouchOutside(false); // disable dismiss by tapping outside of the dialog
+                        progress.show();
+
                         titleEditText = findViewById(R.id.titleEditText);
                         String title = titleEditText.getText().toString();
 
@@ -164,6 +173,7 @@ public class AddTaskActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(DocumentReference documentReference) {
                                         Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                                        progress.dismiss();
                                         finish();
                                     }
                                 })
@@ -171,6 +181,7 @@ public class AddTaskActivity extends AppCompatActivity {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         Log.w(TAG, "Error adding document", e);
+                                        progress.dismiss();
                                     }
                                 });
 

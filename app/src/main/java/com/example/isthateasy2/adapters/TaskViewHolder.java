@@ -10,7 +10,7 @@ import com.example.isthateasy2.R;
 import com.example.isthateasy2.models.Task;
 
 public class TaskViewHolder extends RecyclerView.ViewHolder {
-    TextView course,level, teacherName, title, description;
+    TextView course,level, teacherName, title, description,topic;
 
     public TaskViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -19,6 +19,7 @@ public class TaskViewHolder extends RecyclerView.ViewHolder {
         teacherName=(TextView) itemView.findViewById(R.id.task_TeacherName);
         title=(TextView) itemView.findViewById(R.id.class_name);
         description=(TextView) itemView.findViewById(R.id.task_Description);
+        topic = (TextView) itemView.findViewById(R.id.topicTextViewTaskRow);
 
     }
     public void bind(final Task Task){
@@ -26,7 +27,8 @@ public class TaskViewHolder extends RecyclerView.ViewHolder {
         level.setText(Task.getLevel());
         teacherName.setText(Task.getTeacherName());
         title.setText(Task.getTitle());
-        description.setText(Task.getDescription());;
+        description.setText(Task.getDescription());
+        topic.setText(Task.getTopic());
 //        phone.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
