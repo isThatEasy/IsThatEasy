@@ -1,8 +1,10 @@
 package com.example.isthateasy2;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import com.example.isthateasy2.adapters.ContactAdapter;
 import com.example.isthateasy2.adapters.TaskAdapter;
 import com.example.isthateasy2.models.Contact;
+import com.example.isthateasy2.models.Question;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -24,7 +27,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -96,7 +101,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setVerticalScrollBarEnabled(true);
-        recyclerView.setAdapter(taskAdapter);
+
         return view;
     }
     public void loadTasks(){
@@ -104,14 +109,17 @@ public class HomeFragment extends Fragment {
         db.collection("tasks").document("P1").collection("Math")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                com.example.isthateasy2.models.Task task1 = document.toObject(com.example.isthateasy2.models.Task.class);
+                                com.example.isthateasy2.models.Task task1 = convertHashMapToTask(document.getData());
+//                                        document.toObject(com.example.isthateasy2.models.Task.class);
                                 taskList.add(task1);
 
                             }
+                            recyclerView.setAdapter(taskAdapter);
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
@@ -123,5 +131,32 @@ public class HomeFragment extends Fragment {
 //        taskList.add(new Task( "title2", "level2", "course2", "topic2", "teacherName2", "description2"));
 //        taskList.add(new Task( "title3", "level3", "course3", "topic3", "teacherName3", "description3"));
 //        taskList.add(new Task( "title4", "level4", "course4", "topic4", "teacherName4", "description4"));
+    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public com.example.isthateasy2.models.Task convertHashMapToTask(Map<String, Object> map){
+
+        com.example.isthateasy2.models.Task task = new com.example.isthateasy2.models.Task();
+        task.setClassName((String)map.get("className"));
+        task.setCourse((String)map.get("course"));
+        task.setLevel((String)map.get("level"));
+        task.setTopic((String)map.get("topic"));
+        task.setDescription((String)map.get("description"));
+        task.setTitle((String)map.get("title"));
+        task.setTeacherName((String)map.get("teacherName"));
+
+        ArrayList<Map<String, Object>> qtns=(ArrayList<Map<String, Object>>) map.get("questions");
+        qtns.forEach(qtn ->{
+            Question question = new Question();
+            question.setOptions((ArrayList<String>) qtn.get("options"));
+            question.setQuestion((String)qtn.get("question"));
+            question.setWayOfAnswering((String) qtn.get("wayOfAnswering"));
+            question.setMarks((String) qtn.get("marks"));
+            question.setAnswer((String) qtn.get("answer"));
+
+            task.addQuestion(question);
+        });
+
+        return task;
+
     }
 }

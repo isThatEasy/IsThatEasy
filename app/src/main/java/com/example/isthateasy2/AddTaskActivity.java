@@ -257,9 +257,9 @@ public class AddTaskActivity extends AppCompatActivity {
                         question.setQuestion(questionField.getText().toString());
 
                         try {
-                            question.setMarks(Integer.parseInt(marksField.getText().toString()));
+                            question.setMarks(marksField.getText().toString());
                         } catch (Exception ex) {
-                            question.setMarks(1);
+                            question.setMarks("1");
                         }
 
 

@@ -11,7 +11,7 @@ public class TaskForDisplay {
     private String topic;
     private String teacherName;
     private String description;
-    private ArrayList<Question> questions;
+    private ArrayList<HashMap<String, Object> >questions;
     private String className;
 
     public String getClassName() {
@@ -22,15 +22,12 @@ public class TaskForDisplay {
         this.className = className;
     }
 
-    public void addQuestion(Question question){
-        questions.add(question);
-    }
 
-    public ArrayList<Question> getQuestions() {
+    public ArrayList<HashMap<String, Object>> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(ArrayList<Question> questions) {
+    public void setQuestions(ArrayList<HashMap<String, Object>> questions) {
         this.questions = questions;
     }
 

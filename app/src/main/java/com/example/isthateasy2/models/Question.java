@@ -7,7 +7,7 @@ public class Question {
     private String question;
     private ArrayList<String> options;
     private String answer;
-    private int marks;
+    private String marks;
     private String wayOfAnswering;
 
     public String getWayOfAnswering() {
@@ -21,7 +21,7 @@ public class Question {
     public Question() {
         options = new ArrayList<>();
     }
-    public Question(String question, ArrayList options, String answer, int marks) {
+    public Question(String question, ArrayList options, String answer, String marks) {
         this.question = question;
         this.options = options;
         this.answer = answer;
@@ -52,11 +52,11 @@ public class Question {
         this.answer = answer;
     }
 
-    public int getMarks() {
+    public String getMarks() {
         return marks;
     }
 
-    public void setMarks(int marks) {
+    public void setMarks(String marks){
         this.marks = marks;
     }
 

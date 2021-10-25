@@ -60,8 +60,8 @@
         android:background="@drawable/input_design"
         android:ems="10"
         android:hint="Head master"
-        android:inputType="textPersonName"
 
+        android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textSize="24sp"
         android:theme="@style/Theme.IsThatEasy2.P1"
