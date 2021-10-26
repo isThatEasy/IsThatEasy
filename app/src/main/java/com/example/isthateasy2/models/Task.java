@@ -1,8 +1,11 @@
 package com.example.isthateasy2.models;
 
+import android.view.View;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Task {
+public class Task implements Serializable {
     private String title;
     private String level;
     private String course;
@@ -11,6 +14,16 @@ public class Task {
     private String description;
     private ArrayList<Question> questions;
     private String className;
+    private int id;
+    private static int counter = 0;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getClassName() {
         return className;
@@ -41,10 +54,14 @@ public class Task {
         this.description = description;
 
         questions = new ArrayList<>();
+        ++counter;
+        this.id =counter;
     }
 
     public Task() {
         questions = new ArrayList<>();
+        ++counter;
+        this.id =counter;
     }
 
     public String getTitle() {

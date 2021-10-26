@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IsThatEasy2">
         <activity
+            android:name=".QuizActivity"
+            android:exported="false" />
+        <activity
             android:name=".TaskActivity"
             android:exported="false" />
         <activity

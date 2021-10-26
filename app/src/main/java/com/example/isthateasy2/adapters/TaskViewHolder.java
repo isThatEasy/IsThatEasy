@@ -1,6 +1,7 @@
 package com.example.isthateasy2.adapters;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import com.example.isthateasy2.models.Task;
 
 public class TaskViewHolder extends RecyclerView.ViewHolder {
     TextView course,level, teacherName, title, description,topic;
+    Button attempt;
 
     public TaskViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -20,22 +22,18 @@ public class TaskViewHolder extends RecyclerView.ViewHolder {
         title=(TextView) itemView.findViewById(R.id.class_name);
         description=(TextView) itemView.findViewById(R.id.task_Description);
         topic = (TextView) itemView.findViewById(R.id.topicTextViewTaskRow);
+        attempt = (Button) itemView.findViewById(R.id.class_Enter);
 
     }
     public void bind(final Task Task){
+        //setting id
+        itemView.setId(Task.getId());
         course.setText(Task.getCourse());
         level.setText(Task.getLevel());
         teacherName.setText(Task.getTeacherName());
         title.setText(Task.getTitle());
         description.setText(Task.getDescription());
         topic.setText(Task.getTopic());
-//        phone.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=new Intent(Intent.ACTION_CALL);
-//                intent.setData(Uri.parse("tel:"+phone.getText()));
-//                itemView.getContext().startActivity(intent);
-//            }
-//        });
+        attempt.setTag(Task.getId());
     }
 }

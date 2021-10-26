@@ -1,6 +1,7 @@
 package com.example.isthateasy2;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -15,9 +16,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.isthateasy2.adapters.ContactAdapter;
 import com.example.isthateasy2.adapters.TaskAdapter;
@@ -64,6 +67,8 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
     List<com.example.isthateasy2.models.Task> taskList;
     TaskAdapter taskAdapter;
+
+    View.OnClickListener selectingTaskListener;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -154,13 +159,61 @@ public class HomeFragment extends Fragment {
         recyclerView=(RecyclerView) view.findViewById(R.id.recyclerView);
         loadTasks();
 //        contactAdapter=new ContactAdapter(contactList);
-        taskAdapter = new TaskAdapter(taskList);
+
+        // set listener to the view and button when clicked
+        selectingTaskListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int id;
+                if(view instanceof Button){
+                    id = (int)view.getTag();
+                }
+                else {
+                    id = view.getId();
+                }
+//            String item = mList.get(itemPosition);
+
+                    com.example.isthateasy2.models.Task task = elementPicker(id,taskList);
+
+                if(task != null){
+                    Intent intent = new Intent(getContext(), QuizActivity.class);
+                    intent.putExtra("task",task);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(getContext(), "something bad happen, try again later", Toast.LENGTH_LONG).show();
+                }
+
+
+
+            }
+        };
+
+
+        taskAdapter = new TaskAdapter(taskList, selectingTaskListener);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setVerticalScrollBarEnabled(true);
 
         return view;
     }
+
+
+
+
+
+    public com.example.isthateasy2.models.Task elementPicker(int id, List<com.example.isthateasy2.models.Task> list){
+        com.example.isthateasy2.models.Task task = null;
+        for(int i = 0; i< list.size(); i++){
+            if(list.get(i).getId() == id){
+                task = list.get(i);
+                break;
+            }
+        }
+        return task;
+    }
+
+
     public void loadTasks(){
 
         db.collection("tasks").document(selectedLevel).collection(selectedCourse)
