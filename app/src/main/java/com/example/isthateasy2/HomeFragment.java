@@ -122,7 +122,6 @@ public class HomeFragment extends Fragment {
                 loadingPart.addView(new ProgressBar(getContext()));
                 selectedLevel = adapterView.getItemAtPosition(i).toString();
 
-                taskList.clear();
                 loadTasks();
             }
 
@@ -137,7 +136,6 @@ public class HomeFragment extends Fragment {
                 selectedCourse = adapterView.getItemAtPosition(i).toString();
 
                 loadingPart.addView(new ProgressBar(getContext()));
-                taskList.clear();
                 loadTasks();
 
             }
@@ -223,6 +221,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            taskList.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 com.example.isthateasy2.models.Task task1 = convertHashMapToTask(document.getData());
 //                                        document.toObject(com.example.isthateasy2.models.Task.class);

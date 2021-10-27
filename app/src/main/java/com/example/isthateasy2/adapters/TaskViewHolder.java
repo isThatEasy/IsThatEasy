@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.isthateasy2.R;
 import com.example.isthateasy2.models.Task;
+import com.example.isthateasy2.states.IdGenerator;
 
 public class TaskViewHolder extends RecyclerView.ViewHolder {
     TextView course,level, teacherName, title, description,topic;
@@ -27,7 +28,10 @@ public class TaskViewHolder extends RecyclerView.ViewHolder {
     }
     public void bind(final Task Task){
         //setting id
-        itemView.setId(Task.getId());
+        int id = IdGenerator.getNewButtonId();
+        itemView.setId(id);
+        Task.setId(id);
+
         course.setText(Task.getCourse());
         level.setText(Task.getLevel());
         teacherName.setText(Task.getTeacherName());

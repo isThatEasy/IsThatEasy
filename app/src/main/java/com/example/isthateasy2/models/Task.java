@@ -15,7 +15,6 @@ public class Task implements Serializable {
     private ArrayList<Question> questions;
     private String className;
     private int id;
-    private static int counter = 0;
 
     public int getId() {
         return id;
@@ -54,14 +53,21 @@ public class Task implements Serializable {
         this.description = description;
 
         questions = new ArrayList<>();
-        ++counter;
-        this.id =counter;
     }
 
     public Task() {
         questions = new ArrayList<>();
-        ++counter;
-        this.id =counter;
+    }
+    public Task(Task task){
+        this.title = task.getTitle();
+        this.level = task.getLevel();
+        this.course = task.getCourse();
+        this.topic = task.getTopic();
+        this.teacherName = task.getTeacherName();
+        this.description = task.getDescription();
+        this.questions = task.getQuestions();
+        this.className = task.getClassName();
+        this.id =task.getId();
     }
 
     public String getTitle() {

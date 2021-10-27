@@ -19,7 +19,7 @@ public class QuizActivity extends AppCompatActivity {
 
         Task task =(Task) prevIntent.getSerializableExtra("task");
 
-        TextView titleTesting = findViewById(R.id.titleFieldTesting);
+        TextView titleTesting = findViewById(R.id.quizTitleTextField);
 
         titleTesting.setText(task.getTitle());
     }

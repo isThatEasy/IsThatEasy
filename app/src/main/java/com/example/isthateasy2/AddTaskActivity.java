@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -262,8 +263,9 @@ public class AddTaskActivity extends AppCompatActivity {
                             optionEditText = linearLayout.findViewById(i).findViewById(R.id.each_option_edit_text);
                             question.addOption(optionEditText.getText().toString());
                         }
-                        EditText questionField = popupViewMultipleChoose.findViewById(R.id.question_field_in_multiple_choose),
-                                marksField = popupViewMultipleChoose.findViewById(R.id.marksFiled_in_multiple_choose);
+                        EditText marksField = popupViewMultipleChoose.findViewById(R.id.marksFiled_in_multiple_choose);
+                        TextInputEditText questionField = popupViewMultipleChoose.findViewById(R.id.question_field_in_multiple_choose);
+
 
                         question.setQuestion(questionField.getText().toString());
 

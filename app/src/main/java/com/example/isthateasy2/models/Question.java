@@ -1,9 +1,10 @@
 package com.example.isthateasy2.models;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Question {
+public class Question implements Serializable {
     private String question;
     private ArrayList<String> options;
     private String answer;
@@ -26,6 +27,13 @@ public class Question {
         this.options = options;
         this.answer = answer;
         this.marks = marks;
+    }
+    public Question(Question question){
+        this.question =question.getQuestion();
+        this.options = question.getOptions();
+        this.answer = question.getAnswer();
+        this.marks = question.getMarks();
+        this.wayOfAnswering = question.getWayOfAnswering();
     }
 
     public String getQuestion() {
