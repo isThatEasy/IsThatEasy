@@ -4,9 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.isthateasy2.adapters.QuizQuestionAdapter;
 import com.example.isthateasy2.models.Question;
@@ -20,11 +25,24 @@ public class QuizActivity extends AppCompatActivity {
     ArrayList<Question> questionsList;
     Task task;
     QuizQuestionAdapter quizQuestionAdapter;
+    ImageButton finishQuiz;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+        View.OnClickListener finishListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                @SuppressLint("WrongConstant") Toast toast = Toast.makeText(QuizActivity.this,"clicked", 12);
+                toast.show();
+            }
+        };
+
+        finishQuiz = findViewById(R.id.finishQuiz);
+        finishQuiz.setOnClickListener(finishListener);
 
         Intent prevIntent = getIntent();
 
