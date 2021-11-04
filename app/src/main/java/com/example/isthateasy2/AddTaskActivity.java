@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -26,6 +27,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -38,7 +40,7 @@ public class AddTaskActivity extends AppCompatActivity {
     FloatingActionButton addMenuItem;
     Task task;
     //just index, nothing more
-    int optionIndex = 100000;
+    int optionIndex = 0;
     PopupWindow popupWindow_choose_way_of_answering, popupWindowMUltipleChoose;
     View addTaskPopup, popupViewTypingAnswer, popupViewMultipleChoose, optionView;
     LinearLayout linearLayout;
@@ -47,6 +49,7 @@ public class AddTaskActivity extends AppCompatActivity {
     LayoutInflater inflater;
     Question question;
     ProgressDialog progress;
+    CheckBox isItCorrectCheckBox;
 
     private static final String TAG = "FirebaseLog";
     String testingClassId = "Ysqx4oNwLoBypiBaKp1G";
@@ -167,6 +170,8 @@ public class AddTaskActivity extends AppCompatActivity {
                         task.setLevel(level);
                         task.setCourse(course);
                         task.setClassName(className);
+                        task.setCreatedAt(Timestamp.now());
+                        task.setUpdatedAt(Timestamp.now());
 
 //                        saveTask();
                         db.collection("tasks").document(task.getLevel()).collection(task.getCourse()).add(task)
@@ -259,9 +264,18 @@ public class AddTaskActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         // getting value user types
-                        for (int i = (optionIndex - 1); i >= 100000; --i) {
+                        for (int i = (optionIndex - 1); i >= 0; --i) {
                             optionEditText = linearLayout.findViewById(i).findViewById(R.id.each_option_edit_text);
+                            isItCorrectCheckBox = linearLayout.findViewById(i).findViewById(R.id.checkBoxIsTrue);
+                            if(isItCorrectCheckBox.isChecked()){
+                                question.addAnswer(optionEditText.getText().toString());
+                            }
+
+
+
                             question.addOption(optionEditText.getText().toString());
+                            question.setCreatedAt(Timestamp.now());
+                            question.setUpdatedAt(Timestamp.now());
                         }
                         EditText marksField = popupViewMultipleChoose.findViewById(R.id.marksFiled_in_multiple_choose);
                         TextInputEditText questionField = popupViewMultipleChoose.findViewById(R.id.question_field_in_multiple_choose);

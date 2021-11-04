@@ -2,6 +2,8 @@ package com.example.isthateasy2.models;
 
 import android.view.View;
 
+import com.google.firebase.Timestamp;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -15,6 +17,25 @@ public class Task implements Serializable {
     private ArrayList<Question> questions;
     private String className;
     private int id;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
     public int getId() {
         return id;
@@ -53,6 +74,20 @@ public class Task implements Serializable {
         this.description = description;
 
         questions = new ArrayList<>();
+    }
+
+    public Task(String title, String level, String course, String topic, String teacherName, String description, ArrayList<Question> questions, String className, int id, Timestamp createdAt, Timestamp updatedAt) {
+        this.title = title;
+        this.level = level;
+        this.course = course;
+        this.topic = topic;
+        this.teacherName = teacherName;
+        this.description = description;
+        this.questions = questions;
+        this.className = className;
+        this.id = id;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public Task() {
