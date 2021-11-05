@@ -1,8 +1,12 @@
 package com.example.isthateasy2;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,10 +15,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.isthateasy2.adapters.ContactAdapter;
 import com.example.isthateasy2.adapters.TaskAdapter;
 import com.example.isthateasy2.models.Contact;
+import com.example.isthateasy2.models.Question;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -24,7 +35,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +52,10 @@ public class HomeFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String testingClassId = "Ysqx4oNwLoBypiBaKp1G";
+    Spinner levelSelector, courseSelector;
+    String selectedLevel="P1", selectedCourse="Math";
+    ProgressBar progressBar;
+    LinearLayout loadingPart;
 
 
 
@@ -50,6 +67,8 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
     List<com.example.isthateasy2.models.Task> taskList;
     TaskAdapter taskAdapter;
+
+    View.OnClickListener selectingTaskListener;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -89,29 +108,128 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        loadingPart = view.findViewById(R.id.loadingPartInHome);
+
+        levelSelector = view.findViewById(R.id.levelsSpinnerHome);
+        courseSelector = view.findViewById(R.id.coursesSpinnerHome);
+
+
+        levelSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                loadingPart.addView(new ProgressBar(getContext()));
+                selectedLevel = adapterView.getItemAtPosition(i).toString();
+
+                loadTasks();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        courseSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedCourse = adapterView.getItemAtPosition(i).toString();
+
+                loadingPart.addView(new ProgressBar(getContext()));
+                loadTasks();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+
+
+
+
+
+
+
         recyclerView=(RecyclerView) view.findViewById(R.id.recyclerView);
         loadTasks();
 //        contactAdapter=new ContactAdapter(contactList);
-        taskAdapter = new TaskAdapter(taskList);
+
+        // set listener to the view and button when clicked
+        selectingTaskListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int id;
+                if(view instanceof Button){
+                    id = (int)view.getTag();
+                }
+                else {
+                    id = view.getId();
+                }
+//            String item = mList.get(itemPosition);
+
+                    com.example.isthateasy2.models.Task task = elementPicker(id,taskList);
+
+                if(task != null){
+                    Intent intent = new Intent(getContext(), QuizActivity.class);
+                    intent.putExtra("task",task);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(getContext(), "something bad happen, try again later", Toast.LENGTH_LONG).show();
+                }
+
+
+
+            }
+        };
+
+
+        taskAdapter = new TaskAdapter(taskList, selectingTaskListener);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setVerticalScrollBarEnabled(true);
-        recyclerView.setAdapter(taskAdapter);
+
         return view;
     }
+
+
+
+
+
+    public com.example.isthateasy2.models.Task elementPicker(int id, List<com.example.isthateasy2.models.Task> list){
+        com.example.isthateasy2.models.Task task = null;
+        for(int i = 0; i< list.size(); i++){
+            if(list.get(i).getId() == id){
+                task = list.get(i);
+                break;
+            }
+        }
+        return task;
+    }
+
+
     public void loadTasks(){
 
-        db.collection("tasks").document("P1").collection("Math")
+        db.collection("tasks").document(selectedLevel).collection(selectedCourse)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            taskList.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                com.example.isthateasy2.models.Task task1 = document.toObject(com.example.isthateasy2.models.Task.class);
+                                com.example.isthateasy2.models.Task task1 = convertHashMapToTask(document.getData());
+//                                        document.toObject(com.example.isthateasy2.models.Task.class);
                                 taskList.add(task1);
 
                             }
+                            recyclerView.setAdapter(taskAdapter);
+                            loadingPart.removeAllViews();
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
@@ -123,5 +241,32 @@ public class HomeFragment extends Fragment {
 //        taskList.add(new Task( "title2", "level2", "course2", "topic2", "teacherName2", "description2"));
 //        taskList.add(new Task( "title3", "level3", "course3", "topic3", "teacherName3", "description3"));
 //        taskList.add(new Task( "title4", "level4", "course4", "topic4", "teacherName4", "description4"));
+    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public com.example.isthateasy2.models.Task convertHashMapToTask(Map<String, Object> map){
+
+        com.example.isthateasy2.models.Task task = new com.example.isthateasy2.models.Task();
+        task.setClassName((String)map.get("className"));
+        task.setCourse((String)map.get("course"));
+        task.setLevel((String)map.get("level"));
+        task.setTopic((String)map.get("topic"));
+        task.setDescription((String)map.get("description"));
+        task.setTitle((String)map.get("title"));
+        task.setTeacherName((String)map.get("teacherName"));
+
+        ArrayList<Map<String, Object>> qtns=(ArrayList<Map<String, Object>>) map.get("questions");
+        qtns.forEach(qtn ->{
+            Question question = new Question();
+            question.setOptions((ArrayList<String>) qtn.get("options"));
+            question.setQuestion((String)qtn.get("question"));
+            question.setWayOfAnswering((String) qtn.get("wayOfAnswering"));
+            question.setMarks((String) qtn.get("marks"));
+            question.setAnswer((String) qtn.get("answer"));
+
+            task.addQuestion(question);
+        });
+
+        return task;
+
     }
 }

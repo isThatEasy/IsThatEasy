@@ -1,5 +1,6 @@
 package com.example.isthateasy2;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -24,6 +26,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -36,7 +40,7 @@ public class AddTaskActivity extends AppCompatActivity {
     FloatingActionButton addMenuItem;
     Task task;
     //just index, nothing more
-    int optionIndex = 100000;
+    int optionIndex = 0;
     PopupWindow popupWindow_choose_way_of_answering, popupWindowMUltipleChoose;
     View addTaskPopup, popupViewTypingAnswer, popupViewMultipleChoose, optionView;
     LinearLayout linearLayout;
@@ -44,6 +48,8 @@ public class AddTaskActivity extends AppCompatActivity {
     Spinner levelSpinner, courseSpinner, classSpinner;
     LayoutInflater inflater;
     Question question;
+    ProgressDialog progress;
+    CheckBox isItCorrectCheckBox;
 
     private static final String TAG = "FirebaseLog";
     String testingClassId = "Ysqx4oNwLoBypiBaKp1G";
@@ -54,6 +60,7 @@ public class AddTaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_task);
 
         task = new Task();
+        progress = new ProgressDialog(AddTaskActivity.this);
 
         addMenuItem = findViewById(R.id.addMenuItem);
         addMenuItem.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +139,12 @@ public class AddTaskActivity extends AppCompatActivity {
                     case R.id.settingMenuItem:
                         return true;
                     case R.id.FinishMenuItem: {
+
+                        progress.setTitle("Loading");
+                        progress.setMessage("Wait while loading...");
+                        progress.setCanceledOnTouchOutside(false); // disable dismiss by tapping outside of the dialog
+                        progress.show();
+
                         titleEditText = findViewById(R.id.titleEditText);
                         String title = titleEditText.getText().toString();
 
@@ -157,6 +170,8 @@ public class AddTaskActivity extends AppCompatActivity {
                         task.setLevel(level);
                         task.setCourse(course);
                         task.setClassName(className);
+                        task.setCreatedAt(Timestamp.now());
+                        task.setUpdatedAt(Timestamp.now());
 
 //                        saveTask();
                         db.collection("tasks").document(task.getLevel()).collection(task.getCourse()).add(task)
@@ -164,6 +179,7 @@ public class AddTaskActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(DocumentReference documentReference) {
                                         Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                                        progress.dismiss();
                                         finish();
                                     }
                                 })
@@ -171,6 +187,7 @@ public class AddTaskActivity extends AppCompatActivity {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         Log.w(TAG, "Error adding document", e);
+                                        progress.dismiss();
                                     }
                                 });
 
@@ -247,19 +264,29 @@ public class AddTaskActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         // getting value user types
-                        for (int i = (optionIndex - 1); i >= 100000; --i) {
+                        for (int i = (optionIndex - 1); i >= 0; --i) {
                             optionEditText = linearLayout.findViewById(i).findViewById(R.id.each_option_edit_text);
+                            isItCorrectCheckBox = linearLayout.findViewById(i).findViewById(R.id.checkBoxIsTrue);
+                            if(isItCorrectCheckBox.isChecked()){
+                                question.addAnswer(optionEditText.getText().toString());
+                            }
+
+
+
                             question.addOption(optionEditText.getText().toString());
+                            question.setCreatedAt(Timestamp.now());
+                            question.setUpdatedAt(Timestamp.now());
                         }
-                        EditText questionField = popupViewMultipleChoose.findViewById(R.id.question_field_in_multiple_choose),
-                                marksField = popupViewMultipleChoose.findViewById(R.id.marksFiled_in_multiple_choose);
+                        EditText marksField = popupViewMultipleChoose.findViewById(R.id.marksFiled_in_multiple_choose);
+                        TextInputEditText questionField = popupViewMultipleChoose.findViewById(R.id.question_field_in_multiple_choose);
+
 
                         question.setQuestion(questionField.getText().toString());
 
                         try {
-                            question.setMarks(Integer.parseInt(marksField.getText().toString()));
+                            question.setMarks(marksField.getText().toString());
                         } catch (Exception ex) {
-                            question.setMarks(1);
+                            question.setMarks("1");
                         }
 
 

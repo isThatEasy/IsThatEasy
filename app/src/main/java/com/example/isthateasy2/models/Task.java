@@ -1,8 +1,13 @@
 package com.example.isthateasy2.models;
 
+import android.view.View;
+
+import com.google.firebase.Timestamp;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Task {
+public class Task implements Serializable {
     private String title;
     private String level;
     private String course;
@@ -11,6 +16,34 @@ public class Task {
     private String description;
     private ArrayList<Question> questions;
     private String className;
+    private int id;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getClassName() {
         return className;
@@ -43,8 +76,33 @@ public class Task {
         questions = new ArrayList<>();
     }
 
+    public Task(String title, String level, String course, String topic, String teacherName, String description, ArrayList<Question> questions, String className, int id, Timestamp createdAt, Timestamp updatedAt) {
+        this.title = title;
+        this.level = level;
+        this.course = course;
+        this.topic = topic;
+        this.teacherName = teacherName;
+        this.description = description;
+        this.questions = questions;
+        this.className = className;
+        this.id = id;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     public Task() {
         questions = new ArrayList<>();
+    }
+    public Task(Task task){
+        this.title = task.getTitle();
+        this.level = task.getLevel();
+        this.course = task.getCourse();
+        this.topic = task.getTopic();
+        this.teacherName = task.getTeacherName();
+        this.description = task.getDescription();
+        this.questions = task.getQuestions();
+        this.className = task.getClassName();
+        this.id =task.getId();
     }
 
     public String getTitle() {

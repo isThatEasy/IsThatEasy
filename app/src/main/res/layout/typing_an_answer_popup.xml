@@ -5,19 +5,17 @@
     android:layout_height="match_parent"
     android:background="@color/pink_mistyrose">
 
-    <EditText
+
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/editTextTextPersonName3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="58dp"
+        android:layout_height="123dp"
         android:background="@drawable/input_design"
-        android:ems="10"
-        android:hint="Question"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:paddingStart="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="34dp"
+        android:paddingStart="23dp"
+        android:hint="type Question here" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
