@@ -3,9 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/Documents/GitHub/IsThatEasy/app/src/main/res/layout/activity_add_task.xml" value="0.25" />
         <entry key="..\:/Users/User/Documents/GitHub/IsThatEasy/app/src/main/res/layout/activity_login_chooosing.xml" value="0.12590579710144928" />
         <entry key="..\:/Users/User/Documents/GitHub/IsThatEasy/app/src/main/res/layout/activity_maint.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/User/Documents/GitHub/IsThatEasy/app/src/main/res/layout/activity_register_as_school.xml" value="0.1" />
+        <entry key="..\:/Users/User/Documents/GitHub/IsThatEasy/app/src/main/res/layout/activity_register_as_school.xml" value="0.18" />
         <entry key="..\:/Users/User/Documents/GitHub/IsThatEasy/app/src/main/res/layout/fragment_account.xml" value="0.12590579710144928" />
         <entry key="..\:/Users/User/Documents/GitHub/IsThatEasy/app/src/main/res/layout/fragment_classes.xml" value="0.12590579710144928" />
         <entry key="..\:/Users/User/Documents/GitHub/IsThatEasy/app/src/main/res/layout/fragment_help.xml" value="0.12590579710144928" />
