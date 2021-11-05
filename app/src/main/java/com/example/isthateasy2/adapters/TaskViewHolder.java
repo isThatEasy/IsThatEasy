@@ -28,7 +28,7 @@ public class TaskViewHolder extends RecyclerView.ViewHolder {
     }
     public void bind(final Task Task){
         //setting id
-        int id = IdGenerator.getNewButtonId();
+        int id = IdGenerator.getNewClassId();
         itemView.setId(id);
         Task.setId(id);
 

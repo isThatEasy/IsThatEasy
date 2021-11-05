@@ -15,6 +15,15 @@ public class Question implements Serializable {
     private String wayOfAnswering;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getWayOfAnswering() {
         return wayOfAnswering;
