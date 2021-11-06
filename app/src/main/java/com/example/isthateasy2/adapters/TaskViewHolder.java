@@ -32,7 +32,7 @@ public class TaskViewHolder extends RecyclerView.ViewHolder {
         itemView.setId(id);
         Task.setId(id);
 
-        course.setText(Task.getCourse());
+        course.setText(Task.getCourseName());
         level.setText(Task.getLevel());
         teacherName.setText(Task.getTeacherName());
         title.setText(Task.getTitle());

@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 public class Question implements Serializable {
     private String question;
-    private ArrayList<String> options;
-    private String answer;
-    private ArrayList<String> answers;
-    private String marks;
+    private ArrayList<String> options; // will be deleted
+    private String answer; // will be deleted
+    private ArrayList<String> answers; // will be deleted
+    private String marks; // maxMarks
     private String wayOfAnswering;
     private Timestamp createdAt;
     private Timestamp updatedAt;

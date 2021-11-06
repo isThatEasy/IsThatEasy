@@ -33,8 +33,10 @@
         <activity
             android:name=".AccountActivity"
             android:exported="false" />
+        <activity android:name=".RegisterAsSchoolActivity"
+            android:exported="false"/>
         <activity
-            android:name=".RegisterAsSchoolActivity"
+            android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

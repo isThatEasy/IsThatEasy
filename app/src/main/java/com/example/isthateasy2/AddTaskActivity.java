@@ -1,7 +1,6 @@
 package com.example.isthateasy2;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,8 +29,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.ArrayList;
 
 public class AddTaskActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -168,13 +165,13 @@ public class AddTaskActivity extends AppCompatActivity {
                         task.setDescription(description);
                         task.setTopic(topic);
                         task.setLevel(level);
-                        task.setCourse(course);
+                        task.setCourseName(course);
                         task.setClassName(className);
                         task.setCreatedAt(Timestamp.now());
                         task.setUpdatedAt(Timestamp.now());
 
 //                        saveTask();
-                        db.collection("tasks").document(task.getLevel()).collection(task.getCourse()).add(task)
+                        db.collection("tasks").document(task.getLevel()).collection(task.getCourseName()).add(task)
                                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                     @Override
                                     public void onSuccess(DocumentReference documentReference) {

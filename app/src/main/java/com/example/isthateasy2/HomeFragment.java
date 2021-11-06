@@ -1,6 +1,5 @@
 package com.example.isthateasy2;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,20 +21,16 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.isthateasy2.adapters.ContactAdapter;
 import com.example.isthateasy2.adapters.TaskAdapter;
-import com.example.isthateasy2.models.Contact;
+import com.example.isthateasy2.models.Course;
 import com.example.isthateasy2.models.Question;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -247,7 +242,7 @@ public class HomeFragment extends Fragment {
 
         com.example.isthateasy2.models.Task task = new com.example.isthateasy2.models.Task();
         task.setClassName((String)map.get("className"));
-        task.setCourse((String)map.get("course"));
+        task.setCourse(new Course((Map<String, Object>) map.get("course")));
         task.setLevel((String)map.get("level"));
         task.setTopic((String)map.get("topic"));
         task.setDescription((String)map.get("description"));

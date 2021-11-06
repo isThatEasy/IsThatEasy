@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.isthateasy2.adapters.SubClassAdapter;
-import com.example.isthateasy2.models.SubClass;
+import com.example.isthateasy2.models.Classes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class ClassesFragment extends Fragment {
     RecyclerView recyclerView;
-    List<SubClass> taskList;
+    List<Classes> taskList;
     SubClassAdapter subClassAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -81,9 +81,9 @@ public class ClassesFragment extends Fragment {
         return view;
     }
     public void loadSubClasses(){
-        taskList=new ArrayList<SubClass>();
-        taskList.add(new SubClass( "TeacherName", "School name ", "notfications"));
-        taskList.add(new SubClass( "TeacherName2", "School name2 ", "notfications2"));
+        taskList=new ArrayList<Classes>();
+        taskList.add(new Classes( "TeacherName", "School name ", "notfications"));
+        taskList.add(new Classes( "TeacherName2", "School name2 ", "notfications2"));
 
     }
 }

@@ -8,16 +8,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.isthateasy2.R;
-import com.example.isthateasy2.models.SubClass;
+import com.example.isthateasy2.models.Classes;
 
 import java.util.List;
 
 public class SubClassAdapter extends RecyclerView.Adapter<SubClassViewHolder> {
-    List<SubClass> subClasses;
+    List<Classes> classes;
     SubClassViewHolder subClassViewHolder;
 
-    public SubClassAdapter(List<SubClass> subClasses) {
-        this.subClasses = subClasses;
+    public SubClassAdapter(List<Classes> classes) {
+        this.classes = classes;
     }
 
     @NonNull
@@ -29,13 +29,13 @@ public class SubClassAdapter extends RecyclerView.Adapter<SubClassViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull SubClassViewHolder holder, int position) {
-        final SubClass subClass=subClasses.get(position);
-        holder.bind(subClass);
+        final Classes classes = this.classes.get(position);
+        holder.bind(classes);
         subClassViewHolder=holder;
     }
 
     @Override
     public int getItemCount() {
-        return subClasses.size();
+        return classes.size();
     }
 }
