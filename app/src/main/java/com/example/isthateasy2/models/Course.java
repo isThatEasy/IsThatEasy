@@ -9,6 +9,28 @@ public class Course implements Serializable {
     private String name;
     private String cId;
     private ArrayList<Chapter> chapters;
+    private Level level;
+
+    public Course(int id, String name, String cId, ArrayList<Chapter> chapters, Level level) {
+        this.id = id;
+        this.name = name;
+        this.cId = cId;
+        this.chapters = chapters;
+        this.level = level;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+    public void _setLevelString(String level){
+        if(this.level == null)
+            this.level = new Level();
+        this.level.setName(level);
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
+    }
 
     public void addChapter(Chapter chapter){
         if (chapters == null){

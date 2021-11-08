@@ -18,7 +18,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.isthateasy2.models.Answer;
+import com.example.isthateasy2.models.C;
+import com.example.isthateasy2.models.Level;
 import com.example.isthateasy2.models.Question;
+import com.example.isthateasy2.models.SelectionQuestion;
 import com.example.isthateasy2.models.Task;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -48,7 +52,7 @@ public class AddTaskActivity extends AppCompatActivity {
     ProgressDialog progress;
     CheckBox isItCorrectCheckBox;
 
-    private static final String TAG = "FirebaseLog";
+    private static final String TAG = "AddTASKActivity";
     String testingClassId = "Ysqx4oNwLoBypiBaKp1G";
 
     @Override
@@ -163,15 +167,16 @@ public class AddTaskActivity extends AppCompatActivity {
 
                         task.setTitle(title);
                         task.setDescription(description);
-                        task.setTopic(topic);
-                        task.setLevel(level);
+                        task.setChapterName(topic);
+//                        task._setLevelName(level);
+                        task.setLevel(new Level(level));
                         task.setCourseName(course);
                         task.setClassName(className);
                         task.setCreatedAt(Timestamp.now());
                         task.setUpdatedAt(Timestamp.now());
 
 //                        saveTask();
-                        db.collection("tasks").document(task.getLevel()).collection(task.getCourseName()).add(task)
+                        db.collection("tasks").document(task._getLevelName()).collection(task.getCourseName()).add(task)
                                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                     @Override
                                     public void onSuccess(DocumentReference documentReference) {
@@ -219,8 +224,8 @@ public class AddTaskActivity extends AppCompatActivity {
     }
 
     private void multipleChoiceOption(){
-        question = new Question();
-        question.setWayOfAnswering("multipleChoice");
+        question = new SelectionQuestion();
+        question.setWayOfAnswering(C.SELECTION_WAY_OF_ANSWERING);
 
 
         popupViewMultipleChoose = inflater.inflate(R.layout.add_multiple_choose_popup, null);
@@ -261,16 +266,20 @@ public class AddTaskActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         // getting value user types
+                        Answer answer;
                         for (int i = (optionIndex - 1); i >= 0; --i) {
                             optionEditText = linearLayout.findViewById(i).findViewById(R.id.each_option_edit_text);
                             isItCorrectCheckBox = linearLayout.findViewById(i).findViewById(R.id.checkBoxIsTrue);
+                            answer = new Answer();
+                            answer.setAnswer(optionEditText.getText().toString());
+                            Log.d(TAG, "onClick: answer created" + answer.getAnswer());
                             if(isItCorrectCheckBox.isChecked()){
-                                question.addAnswer(optionEditText.getText().toString());
+                                answer.setIsItCorrect(true);
                             }
-
-
-
-                            question.addOption(optionEditText.getText().toString());
+                            else {
+                                answer.setIsItCorrect(false);
+                            }
+                            ((SelectionQuestion)question).addPossibleAnswer(answer);
                             question.setCreatedAt(Timestamp.now());
                             question.setUpdatedAt(Timestamp.now());
                         }

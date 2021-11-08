@@ -9,23 +9,22 @@ import java.util.ArrayList;
 
 public class Task implements Serializable {
     private String title;
-    private String level;
-    private String topic;
-//    private String teacherName;
+    private Chapter chapter;
     private String description;
     private ArrayList<Question> questions;
-    private String className; // will be deleted later
+    private Class_ class_;
     private int id;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 
     private Course course;
     private TeacherUser teacher;
-    private Classes taskClass; // created in which class
+    private Level level;
+//    private Class_ taskClass; // created in which class
     private boolean isItPublic = true;
     private boolean showAnswerAfterAttempt = true;
 
-    public Task(String title, String description, ArrayList<Question> questions, int id, Timestamp createdAt, Timestamp updatedAt, TeacherUser teacher, Classes taskClass, boolean isItPublic, boolean showAnswerAfterAttempt) {
+    public Task(String title, String description, ArrayList<Question> questions, int id, Timestamp createdAt, Timestamp updatedAt, TeacherUser teacher, Class_ class_, boolean isItPublic, boolean showAnswerAfterAttempt) {
         this.title = title;
         this.description = description;
         this.questions = questions;
@@ -33,7 +32,7 @@ public class Task implements Serializable {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.teacher = teacher;
-        this.taskClass = taskClass;
+        this.class_ = class_;
         this.isItPublic = isItPublic;
         this.showAnswerAfterAttempt = showAnswerAfterAttempt;
     }
@@ -46,12 +45,12 @@ public class Task implements Serializable {
         this.teacher = teacher;
     }
 
-    public Classes getTaskClass() {
-        return taskClass;
+    public Class_ getClass_() {
+        return class_;
     }
 
-    public void setTaskClass(Classes taskClass) {
-        this.taskClass = taskClass;
+    public void setClass_(Class_ class_) {
+        this.class_ = class_;
     }
 
     public boolean isItPublic() {
@@ -96,12 +95,19 @@ public class Task implements Serializable {
     }
 
     public String getClassName() {
-        return className;
+        if(class_ == null){
+            return null;
+        }
+        return class_.getName();
     }
 
     public void setClassName(String className) {
-        this.className = className;
+        if(class_ == null)
+            this.class_ = new Class_();
+        this.class_.setName(className);
     }
+
+
 
     public void addQuestion(Question question){
         if(questions == null)
@@ -117,32 +123,32 @@ public class Task implements Serializable {
         this.questions = questions;
     }
 
-    public Task(String title, String level, String courseName, String topic, String teacherName, String description) {
+    public Task(String title, String level, String courseName, String chapter, String teacherName, String description) {
         this.course = new Course();
         this.teacher = new TeacherUser();
+        this.chapter = new Chapter(chapter);
+        this.level = new Level(level);
 
         this.title = title;
-        this.level = level;
         this.course.setName(courseName);
-        this.topic = topic;
         this.teacher.setFirstName(teacherName);
         this.description = description;
 
         questions = new ArrayList<>();
     }
 
-    public Task(String title, String level, String courseName, String topic, String teacherName, String description, ArrayList<Question> questions, String className, int id, Timestamp createdAt, Timestamp updatedAt) {
+    public Task(String title, String level, String courseName, String chapter, String teacherName, String description, ArrayList<Question> questions, String className, int id, Timestamp createdAt, Timestamp updatedAt) {
         this.course = new Course();
         this.teacher = new TeacherUser();
+        this.chapter = new Chapter(chapter);
+        this.class_ = new Class_(className);
+        this.level = new Level(level);
 
         this.title = title;
-        this.level = level;
         this.course.setName(courseName);
-        this.topic = topic;
         this.teacher.setFirstName(teacherName);
         this.description = description;
         this.questions = questions;
-        this.className = className;
         this.id = id;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -153,13 +159,12 @@ public class Task implements Serializable {
     }
     public Task(@NonNull Task task){
         this.title = task.getTitle();
-        this.level = task.getLevel();
         this.course = task.getCourse();
-        this.topic = task.getTopic();
+        this.chapter = task.getChapter();
         this.teacher = task.getTeacher();
         this.description = task.getDescription();
         this.questions = task.getQuestions();
-        this.className = task.getClassName();
+        this.class_ = task.getClass_();
         this.id =task.getId();
     }
 
@@ -171,15 +176,27 @@ public class Task implements Serializable {
         this.title = title;
     }
 
-    public String getLevel() {
-        return level;
+    public String _getLevelName() {
+        if(this.level == null)
+            return null;
+        return this.level.getName();
+    }
+    public Level getLevel(){
+        return this.level;
     }
 
-    public void setLevel(String level) {
+    public void _setLevelName(String levelName) {
+        if(this.level == null)
+            this.level = new Level();
+        this.level.setName(levelName);
+    }
+    public void setLevel(Level level){
         this.level = level;
     }
 
     public String getCourseName() {
+        if(course == null)
+            return null;
         return this.course.getName();
     }
     public Course getCourse(){
@@ -194,12 +211,24 @@ public class Task implements Serializable {
         this.course = course;
     }
 
-    public String getTopic() {
-        return topic;
+    public String getChapterName() {
+        return chapter.getName();
     }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
+    public void setChapterName(String chapterName) {
+        if(this.chapter == null)
+            chapter = new Chapter();
+        this.chapter.setName(chapterName);
+    }
+
+    public Chapter getChapter() {
+        if(chapter == null)
+            return null;
+        return chapter;
+    }
+
+    public void setChapter(Chapter chapter) {
+        this.chapter = chapter;
     }
 
     public String getTeacherName() {

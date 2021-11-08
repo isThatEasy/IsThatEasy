@@ -22,9 +22,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.isthateasy2.adapters.TaskAdapter;
+import com.example.isthateasy2.models.C;
 import com.example.isthateasy2.models.Course;
-import com.example.isthateasy2.models.Question;
+import com.example.isthateasy2.models.Level;
+import com.example.isthateasy2.models.SelectionQuestion;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -229,7 +232,13 @@ public class HomeFragment extends Fragment {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
-                });
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e(TAG, "onFailure: Error on database occur" + e.toString() );
+            }
+        })
+        ;
 
 //        taskList=new ArrayList<Task>();
 //        taskList.add(new Task( "title1", "level1", "course1", "topic1", "teacherName1", "description1"));
@@ -242,23 +251,45 @@ public class HomeFragment extends Fragment {
 
         com.example.isthateasy2.models.Task task = new com.example.isthateasy2.models.Task();
         task.setClassName((String)map.get("className"));
-        task.setCourse(new Course((Map<String, Object>) map.get("course")));
-        task.setLevel((String)map.get("level"));
-        task.setTopic((String)map.get("topic"));
+        try{
+            task.setCourse(new Course((Map<String, Object>) map.get("course")));
+        }catch (ClassCastException cast){
+            Log.e(TAG, "convertHashMapToTask: casting exception ");
+        }
+
+
+        try{
+            task.setLevel(new Level((Map<String, Object>)map.get("level")));
+        }
+        catch (Exception e){
+            Log.e(TAG, "convertHashMapToTask: error occur" );
+        }
+        task.setChapterName((String)map.get("topic"));
         task.setDescription((String)map.get("description"));
         task.setTitle((String)map.get("title"));
         task.setTeacherName((String)map.get("teacherName"));
 
         ArrayList<Map<String, Object>> qtns=(ArrayList<Map<String, Object>>) map.get("questions");
         qtns.forEach(qtn ->{
-            Question question = new Question();
-            question.setOptions((ArrayList<String>) qtn.get("options"));
-            question.setQuestion((String)qtn.get("question"));
-            question.setWayOfAnswering((String) qtn.get("wayOfAnswering"));
-            question.setMarks((String) qtn.get("marks"));
-            question.setAnswer((String) qtn.get("answer"));
+            switch ((String) qtn.get("wayOfAnswering")){
+                case C.SELECTION_WAY_OF_ANSWERING:
+                {
+                    SelectionQuestion question = new SelectionQuestion();
+                    question.setAnswerObjectMap(((ArrayList<Map<String,Object>>) qtn.get("answerObject")));
+                    question.setQuestion((String)qtn.get("question"));
+                    question.setWayOfAnswering((String) qtn.get("wayOfAnswering"));
+                    question.setMarks((String) qtn.get("marks"));
 
-            task.addQuestion(question);
+                    task.addQuestion(question);
+                    break;
+                }
+                default:
+                {
+                    Log.d("msg","default Case in ");
+                    break;
+                }
+            }
+
         });
 
         return task;

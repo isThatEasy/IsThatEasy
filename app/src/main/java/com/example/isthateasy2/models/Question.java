@@ -6,23 +6,57 @@ import com.google.firebase.Timestamp;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Question implements Serializable {
+public class Question implements Serializable{
     private String question;
-    private ArrayList<String> options; // will be deleted
-    private String answer; // will be deleted
-    private ArrayList<String> answers; // will be deleted
+    protected Object answerObject;
     private String marks; // maxMarks
     private String wayOfAnswering;
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private int id;
 
-    public int getId() {
-        return id;
+    public Question(String wayOfAnswering) {
+        this.wayOfAnswering = wayOfAnswering;
     }
 
-    public void setId(int id) {
+    public Question(String question, String marks, String wayOfAnswering, Timestamp createdAt, Timestamp updatedAt, int id) {
+        this.question = question;
+        this.marks = marks;
+        this.wayOfAnswering = wayOfAnswering;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
         this.id = id;
+    }
+
+    public Question(String question, Object answerObject, String marks, String wayOfAnswering, Timestamp createdAt, Timestamp updatedAt, int id) {
+        this.question = question;
+        this.answerObject = answerObject;
+        this.marks = marks;
+        this.wayOfAnswering = wayOfAnswering;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.id = id;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+
+    public void setAnswerObject(Object answerObject) {
+        this.answerObject = answerObject;
+    }
+
+    public String getMarks() {
+        return marks;
+    }
+
+    public void setMarks(String marks) {
+        this.marks = marks;
     }
 
     public String getWayOfAnswering() {
@@ -31,47 +65,6 @@ public class Question implements Serializable {
 
     public void setWayOfAnswering(String wayOfAnswering) {
         this.wayOfAnswering = wayOfAnswering;
-    }
-
-    public Question() {
-        options = new ArrayList<>();
-        answers = new ArrayList<>();
-    }
-    public Question(String question, ArrayList options, String answer, String marks) {
-        this.question = question;
-        this.options = options;
-        this.answer = answer;
-        this.marks = marks;
-    }
-    public Question(Question question){
-        this.question =question.getQuestion();
-        this.options = question.getOptions();
-        this.answer = question.getAnswer();
-        this.marks = question.getMarks();
-        this.wayOfAnswering = question.getWayOfAnswering();
-        this.answers = question.answers;
-    }
-
-    public Question(String question, ArrayList<String> options, String answer, ArrayList<String> answers, String marks, String wayOfAnswering, Timestamp createdAt, Timestamp updatedAt) {
-        this.question = question;
-        this.options = options;
-        this.answer = answer;
-        this.answers = answers;
-        this.marks = marks;
-        this.wayOfAnswering = wayOfAnswering;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-
-    public ArrayList<String> getAnswers() {
-        return answers;
-    }
-    public void addAnswer(String answer){
-        answers.add(answer);
-    }
-
-    public void setAnswers(ArrayList<String> answers) {
-        this.answers = answers;
     }
 
     public Timestamp getCreatedAt() {
@@ -90,39 +83,11 @@ public class Question implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public String getQuestion() {
-        return question;
+    public int getId() {
+        return id;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public ArrayList getOptions() {
-        return options;
-    }
-
-    public void setOptions(ArrayList options) {
-        this.options = options;
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
-    public String getMarks() {
-        return marks;
-    }
-
-    public void setMarks(String marks){
-        this.marks = marks;
-    }
-
-    public void addOption(String option){
-        options.add(option);
+    public void setId(int id) {
+        this.id = id;
     }
 }

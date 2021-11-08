@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.isthateasy2.R;
-import com.example.isthateasy2.models.Classes;
+import com.example.isthateasy2.models.Class_;
 
 public class SubClassViewHolder extends RecyclerView.ViewHolder {
     TextView teacherName, schoolName, notification;
@@ -20,10 +20,10 @@ public class SubClassViewHolder extends RecyclerView.ViewHolder {
         notification=(TextView)itemView.findViewById(R.id.classes_notifications);
 //        image=(ImageView) itemView.findViewById(R.id.image);
     }
-    public void bind(final Classes classes){
-        teacherName.setText(classes.getTeacherName());
-        schoolName.setText(classes.getSchoolName());
-        notification.setText(classes.getNotification());
+    public void bind(final Class_ aClass){
+        teacherName.setText(aClass.getTeacherName());
+        schoolName.setText(aClass.getSchoolName());
+        notification.setText(aClass.getNotification());
 //        phone.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

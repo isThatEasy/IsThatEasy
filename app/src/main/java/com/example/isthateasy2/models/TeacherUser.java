@@ -3,26 +3,26 @@ package com.example.isthateasy2.models;
 import java.util.ArrayList;
 
 public class TeacherUser extends User{
-    private ArrayList<Classes> classes;//attention on this with classes class
+    private ArrayList<Class_> aClasses;//attention on this with classes class
     private School school;
     private String degree;
 
-    public void addClass(Classes class_){
-        if(classes == null)
-            classes = new ArrayList<>();
-        classes.add(class_);
+    public void addClass(Class_ class_){
+        if(aClasses == null)
+            aClasses = new ArrayList<>();
+        aClasses.add(class_);
     }
 
-    public TeacherUser(String firstName, String secondName, ArrayList<Classes> classes, School school, String degree) {
+    public TeacherUser(String firstName, String secondName, ArrayList<Class_> aClasses, School school, String degree) {
         super(firstName, secondName, "Teacher");
-        this.classes = classes;
+        this.aClasses = aClasses;
         this.school = school;
         this.degree = degree;
     }
 
-    public TeacherUser(ArrayList<Classes> classes, School school, String degree) {
+    public TeacherUser(ArrayList<Class_> aClasses, School school, String degree) {
         super("Teacher");
-        this.classes = classes;
+        this.aClasses = aClasses;
         this.school = school;
         this.degree = degree;
     }
@@ -31,12 +31,12 @@ public class TeacherUser extends User{
         super("Teacher");
     }
 
-    public ArrayList<Classes> getClasses() {
-        return classes;
+    public ArrayList<Class_> getClasses() {
+        return aClasses;
     }
 
-    public void setClasses(ArrayList<Classes> classes) {
-        this.classes = classes;
+    public void setClasses(ArrayList<Class_> aClasses) {
+        this.aClasses = aClasses;
     }
 
     public School getSchool() {

@@ -15,6 +15,10 @@ public class Chapter implements Serializable {
         subChapters.add(chapter);
     }
 
+    public Chapter(String name) {
+        this.name = name;
+    }
+
     public Chapter(int id, String name) {
         this.id = id;
         this.name = name;

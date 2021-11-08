@@ -9,16 +9,16 @@ public class TaskResult implements Serializable {
     private int totalMarks;
     private Task task;
     private boolean isMarked;
-    private ArrayList<AnsweredQuestion> answeredQuestions;
+    private ArrayList<Question> answeredQuestions;
     private Timestamp workedAt;
 
-    public void addAnsweredQuestion(AnsweredQuestion answeredQuestion){
+    public void addAnsweredQuestion(Question answeredQuestion){
         if(answeredQuestions == null)
             answeredQuestions = new ArrayList<>();
         answeredQuestions.add(answeredQuestion);
     }
 
-    public TaskResult(int totalMarks, Task task, boolean isMarked, ArrayList<AnsweredQuestion> answeredQuestions, Timestamp workedAt) {
+    public TaskResult(int totalMarks, Task task, boolean isMarked, ArrayList<Question> answeredQuestions, Timestamp workedAt) {
         this.totalMarks = totalMarks;
         this.task = task;
         this.isMarked = isMarked;
@@ -54,12 +54,12 @@ public class TaskResult implements Serializable {
         isMarked = marked;
     }
 
-    public ArrayList<AnsweredQuestion> getAnsweredQuestions() {
+    public ArrayList<Question> getAnsweredQuestions() {
         return answeredQuestions;
     }
 
-    public void setAnsweredQuestions(ArrayList<AnsweredQuestion> answeredQuestions) {
-        this.answeredQuestions = answeredQuestions;
+    public void setAnsweredQuestions(ArrayList<Question> answeredQuestion) {
+        this.answeredQuestions = answeredQuestion;
     }
 
     public Timestamp getWorkedAt() {

@@ -3,7 +3,7 @@ package com.example.isthateasy2.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Classes implements Serializable {
+public class Class_ implements Serializable {
     private String teacherName; // will be deleted
     private String schoolName; //will be deleted
     private String notification; // will be deleted later
@@ -28,8 +28,11 @@ public class Classes implements Serializable {
         students.add(studentUser);
     }
 
+    public Class_(String name) {
+        this.name = name;
+    }
 
-    public Classes(String classId, School school, TeacherUser teacherUser, Level level, ArrayList<Task> tasks, ArrayList<StudentUser> students, String name) {
+    public Class_(String classId, School school, TeacherUser teacherUser, Level level, ArrayList<Task> tasks, ArrayList<StudentUser> students, String name) {
         this.classId = classId;
         this.school = school;
         this.teacherUser = teacherUser;
@@ -40,13 +43,13 @@ public class Classes implements Serializable {
     }
 
 
-    public Classes(String teacherName, String schoolName, String notification) {
+    public Class_(String teacherName, String schoolName, String notification) {
         this.teacherName = teacherName;
         this.schoolName = schoolName;
         this.notification = notification;
     }
 
-    public Classes() {
+    public Class_() {
     }
 
     public String getTeacherName() {

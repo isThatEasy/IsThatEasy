@@ -2,6 +2,7 @@ package com.example.isthateasy2.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Level implements Serializable {
     private String id;
@@ -13,6 +14,13 @@ public class Level implements Serializable {
             courses = new ArrayList<>();
         }
         courses.add(course);
+    }
+
+    public Level(String name) {
+        this.name = name;
+    }
+    public Level(Map<String, Object> level){
+        this.name = (String)level.get("name");
     }
 
     public Level(String id, String name, ArrayList<Course> courses) {

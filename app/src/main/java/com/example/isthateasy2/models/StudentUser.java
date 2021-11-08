@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class StudentUser extends User {
     private ArrayList<TaskResult> taskResults;
-    private ArrayList<Classes> enrolledClasses;
+    private ArrayList<Class_> enrolledClasses;
     private Level level;
     private School school;
 
@@ -13,7 +13,7 @@ public class StudentUser extends User {
             taskResults = new ArrayList<>();
         taskResults.add(taskResult);
     }
-    public void addEnrolledClass(Classes class_){
+    public void addEnrolledClass(Class_ class_){
         if(enrolledClasses == null){
             enrolledClasses = new ArrayList<>();
         }
@@ -23,14 +23,14 @@ public class StudentUser extends User {
     public StudentUser() {
     }
 
-    public StudentUser(ArrayList<TaskResult> taskResults, ArrayList<Classes> enrolledClasses, Level level, School school) {
+    public StudentUser(ArrayList<TaskResult> taskResults, ArrayList<Class_> enrolledClasses, Level level, School school) {
         this.taskResults = taskResults;
         this.enrolledClasses = enrolledClasses;
         this.level = level;
         this.school = school;
     }
 
-    public StudentUser(String firstName, String secondName, String typeOfUser, ArrayList<TaskResult> taskResults, ArrayList<Classes> enrolledClasses, Level level, School school) {
+    public StudentUser(String firstName, String secondName, String typeOfUser, ArrayList<TaskResult> taskResults, ArrayList<Class_> enrolledClasses, Level level, School school) {
         super(firstName, secondName, typeOfUser);
         this.taskResults = taskResults;
         this.enrolledClasses = enrolledClasses;
@@ -38,7 +38,7 @@ public class StudentUser extends User {
         this.school = school;
     }
 
-    public StudentUser(String typeOfUser, ArrayList<TaskResult> taskResults, ArrayList<Classes> enrolledClasses, Level level, School school) {
+    public StudentUser(String typeOfUser, ArrayList<TaskResult> taskResults, ArrayList<Class_> enrolledClasses, Level level, School school) {
         super(typeOfUser);
         this.taskResults = taskResults;
         this.enrolledClasses = enrolledClasses;
@@ -54,11 +54,11 @@ public class StudentUser extends User {
         this.taskResults = taskResults;
     }
 
-    public ArrayList<Classes> getEnrolledClasses() {
+    public ArrayList<Class_> getEnrolledClasses() {
         return enrolledClasses;
     }
 
-    public void setEnrolledClasses(ArrayList<Classes> enrolledClasses) {
+    public void setEnrolledClasses(ArrayList<Class_> enrolledClasses) {
         this.enrolledClasses = enrolledClasses;
     }
 

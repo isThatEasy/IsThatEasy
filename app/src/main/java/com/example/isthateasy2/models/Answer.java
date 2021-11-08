@@ -66,9 +66,9 @@ public class Answer implements Serializable {
         return isItCorrect;
     }
 
-    public void setIsItCorrect(String isItCorrect) {
+    public void setIsItCorrectString(Object isItCorrect) {
         try {
-            this.isItCorrect =Boolean.getBoolean(isItCorrect) ;
+            this.isItCorrect =Boolean.getBoolean((String) isItCorrect) ;
         }
         catch (Exception e){
             Log.e("converting error", "Answer: fail to convert isItCorrect to boolean");
