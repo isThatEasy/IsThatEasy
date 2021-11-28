@@ -2,11 +2,13 @@ package com.example.isthateasy2;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -16,15 +18,24 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.isthateasy2.models.User;
+import com.example.isthateasy2.states.S;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,6 +48,7 @@ public class MeNotLoginFragment extends Fragment {
     EditText email, password;
     private FirebaseAuth mAuth;
     String TAG = "LoginPageActivity";
+    ProgressDialog progress;
 
 
 
@@ -125,11 +137,45 @@ public class MeNotLoginFragment extends Fragment {
         return view;
     }
     private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
+        progress = new ProgressDialog(getContext());
+        progress.setTitle("Loading");
+        progress.setMessage("Wait while loading...");
+        progress.setCanceledOnTouchOutside(false); // disable dismiss by tapping outside of the dialog
+        progress.show();
+
+
         IdpResponse response = result.getIdpResponse();
         if (result.getResultCode() == RESULT_OK) {
             // Successfully signed in
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            S.setUser(user);
             Log.d(TAG, "onSignInResult: complete successfully");
+
+
+            S.getDb().collection("users").document(user.getUid())
+            .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Log.d(TAG, "onComplete: User exists");
+                            S.setUserInfo(document.toObject(User.class));
+                        } else {
+                            Intent intent = new Intent(getContext(), RegisterChoosingActivity.class);
+                            startActivity(intent);
+                        }
+                    } else {
+//                    Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
+//                    startActivity(intent);
+                        Log.d(TAG, "get failed with ", task.getException());
+                    }
+                    progress.dismiss();
+                }
+            });
+
+
+
             // ...
         } else {
             // Sign in failed. If response is null the user canceled the

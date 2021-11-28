@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/mainjpg"
-    tools:context=".LoginChoosingActivity">
+    tools:context=".RegisterChoosingActivity">
 
     <Button
         android:id="@+id/loginbtn_choosing"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="116dp"
         android:background="@drawable/buttonpsix"
-        android:text="LOGIN"
+        android:text="Student"
         android:textSize="26dp"
         android:theme="@style/Theme.IsThatEasy2.P2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="94dp"
-        android:text="REGISTER A SCHOOL"
+        android:text="Teacher"
         android:textSize="18sp"
         android:background="@drawable/buttonpsix"
         android:theme="@style/Theme.IsThatEasy2.Pe"
@@ -39,23 +39,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="82dp"
-        android:text="REGISTER AS TEACHER"
+        android:text="HeadMaster"
         android:textSize="18sp"
         android:background="@drawable/buttonpsix"
         android:theme="@style/Theme.IsThatEasy2.Pe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RegisterAschoolbtn" />
-    <Button
-        android:id="@+id/RegisterAsStudent"
+
+    <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="82dp"
-        android:text="REGISTER AS STUDENT"
-        android:textSize="18sp"
-        android:background="@drawable/buttonpsix"
-        android:theme="@style/Theme.IsThatEasy2.Pe"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
+        android:text="Continue As"
+        android:textColor="@color/p2"
+        android:textSize="26dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RegisterAsTeacher" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

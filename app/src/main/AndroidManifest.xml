@@ -28,7 +28,7 @@
             android:name=".WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginChoosingActivity"
+            android:name=".RegisterChoosingActivity"
             android:exported="false" />
         <activity
             android:name=".AccountActivity"
