@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -15,12 +16,19 @@ public class RegisterAsSchoolActivity extends AppCompatActivity {
 EditText SchoolOwnerId,SchoolHeadmaster,SchoolEmailid,SchoolPnoneNumberId,SchoolPasswordId;
 TextView textView12;
     Button button;
-    Spinner spinner2,spinner4,spinner3;
+    Spinner courseSpinner,spinner4,spinner3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_as_school);
         Button button = findViewById(R.id.button);
+
+
+        String[] list = getResources().getStringArray(R.array.levels);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item,list);
+        courseSpinner = findViewById(R.id.courseSpinnerR);
+        courseSpinner.setAdapter(adapter);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,8 +50,8 @@ TextView textView12;
                  SchoolPasswordId = findViewById(R.id.SchoolPasswordId);
                 String Password = SchoolPasswordId.getText().toString();
 
-                spinner2 = findViewById(R.id.spinner2);
-                String courses = spinner2.getSelectedItem().toString();
+                courseSpinner = findViewById(R.id.courseSpinnerR);
+                String courses = courseSpinner.getSelectedItem().toString();
 
                 spinner3 = findViewById(R.id.spinner3);
                 String levelTo = spinner3.getSelectedItem().toString();

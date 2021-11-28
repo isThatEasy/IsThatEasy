@@ -61,7 +61,7 @@ public class MeFragment extends Fragment {
         user = new User("Teacher");
         switch (user.getTypeOfUser()){
             case "Teacher":
-                getChildFragmentManager().beginTransaction().replace(R.id.currentUserFragment, com.example.isthateasy2.MeAsTeacherFragment.newInstance("p1", "p2")).commit();
+                getChildFragmentManager().beginTransaction().replace(R.id.currentUserFragment, com.example.isthateasy2.MeNotLoginFragment.newInstance("p1", "p2")).commit();
                 break;
             default:
                 break;
