@@ -25,17 +25,13 @@ import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -162,15 +158,13 @@ public class MeNotLoginFragment extends Fragment {
                             Log.d(TAG, "onComplete: User exists");
                             S.setUserInfo(document.toObject(User.class));
                         } else {
-                            Intent intent = new Intent(getContext(), RegisterChoosingActivity.class);
+                            Intent intent = new Intent(getContext(), LoginChoosingActivity.class);
                             startActivity(intent);
                         }
                     } else {
-//                    Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
-//                    startActivity(intent);
                         Log.d(TAG, "get failed with ", task.getException());
+                        progress.dismiss();
                     }
-                    progress.dismiss();
                 }
             });
 
@@ -184,5 +178,11 @@ public class MeNotLoginFragment extends Fragment {
             // ...
             Log.d(TAG, "onSignInResult: fail");
         }
+    }
+    @Override
+    public void onStop(){
+        super.onStop();
+        if(progress!=null)
+            progress.dismiss();
     }
 }
