@@ -5,28 +5,53 @@ package com.example.isthateasy2;
 
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.isthateasy2.models.School;
+import com.example.isthateasy2.models.User;
+import com.example.isthateasy2.states.S;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+
 public class RegisterAsSchoolActivity extends AppCompatActivity {
-EditText SchoolHeadmaster,SchoolEmailid,SchoolPnoneNumberId;
-TextView textView12;
-    Button button;
-    Spinner spinner4,spinner3;
+    private String TAG = "RegisterAsSchool";
+
+
+EditText schoolHeadmaster, schoolEmailid, schoolPnoneNumberId, schoolLocation, schoolName;
+    FirebaseUser user = S.getUser();
+    Button registerNowButton;
+    Spinner lowerLevelSpinner, higherLevelSpinner;
+
+
+    RadioButton primaryB;
+    RadioButton secondaryB;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_as_school);
-        Button button = findViewById(R.id.button);
+        registerNowButton = findViewById(R.id.registerNowButton);
+
+
+        TextView userName = findViewById(R.id.userName);
+        userName.setText(user.getDisplayName());
+
 
 
         // using custom adapter
@@ -35,34 +60,60 @@ TextView textView12;
 //        courseSpinner = findViewById(R.id.courseSpinnerR);
 //        courseSpinner.setAdapter(adapter);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        registerNowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView textView12 = findViewById(R.id.textView12);
-                String course = textView12.getText().toString();
+                School school = new School();
+
+                schoolName = findViewById(R.id.SchoolName);
+                school.setName(schoolName.getText().toString());
+
+                schoolLocation = findViewById(R.id.schoolLocation);
+                school.setLocation(schoolLocation.getText().toString());
 
 
-                SchoolHeadmaster = findViewById(R.id.SchoolHeadmaster);
-                String Headmaster =SchoolHeadmaster.getText().toString();
+                schoolEmailid = findViewById(R.id.SchoolEmailid);
+                school.setContactEmail(schoolEmailid.getText().toString());
 
-                SchoolEmailid = findViewById(R.id.SchoolEmailid);
-                String Email = SchoolEmailid.getText().toString();
-
-                SchoolPnoneNumberId = findViewById(R.id.SchoolPnoneNumberId);
-                String PhoneNumber = SchoolPnoneNumberId.getText().toString();
+                schoolPnoneNumberId = findViewById(R.id.SchoolPnoneNumberId);
+                school.setTelephone(schoolPnoneNumberId.getText().toString());
 
 
-                spinner3 = findViewById(R.id.spinner3);
-                String levelTo = spinner3.getSelectedItem().toString();
+                higherLevelSpinner = findViewById(R.id.higherLevel);
+                lowerLevelSpinner = findViewById(R.id.lowerLevel);
+                school.createLevels(lowerLevelSpinner.getSelectedItem().toString(), higherLevelSpinner.getSelectedItem().toString());
 
-                spinner4 = findViewById(R.id.spinner4);
-                String levelFrom = spinner4.getSelectedItem().toString();
+                schoolHeadmaster = findViewById(R.id.headmasterName);
+                school.setHeadMaster(schoolHeadmaster.getText().toString());
 
-                @SuppressLint("WrongConstant") Toast toast = Toast.makeText(RegisterAsSchoolActivity.this,levelTo,5);
-                toast.show();
+
+
+                User userInfo = new SchoolOwnerUser(user.getUid(),school);
+                S.setUserInfo(userInfo);
+                saveToFirebase(school);
+
 
 
             }
         });
+    }
+
+    private void saveToFirebase(School school) {
+        S.getDb().collection("schools")
+                .add(school)
+               .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                   @Override
+                   public void onComplete(@NonNull Task<DocumentReference> task) {
+                       Toast.makeText(RegisterAsSchoolActivity.this, "successfully saved", Toast.LENGTH_SHORT).show();
+                       Intent intent = new Intent(RegisterAsSchoolActivity.this, HomeActivity.class);
+                       startActivity(intent);
+                   }
+               })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(RegisterAsSchoolActivity.this, "fail to save", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

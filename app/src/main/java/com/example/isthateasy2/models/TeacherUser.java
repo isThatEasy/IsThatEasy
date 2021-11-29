@@ -13,12 +13,6 @@ public class TeacherUser extends User{
         aClasses.add(class_);
     }
 
-    public TeacherUser(String firstName, String secondName, ArrayList<Class_> aClasses, School school, String degree) {
-        super(firstName, secondName, "Teacher");
-        this.aClasses = aClasses;
-        this.school = school;
-        this.degree = degree;
-    }
 
     public TeacherUser(ArrayList<Class_> aClasses, School school, String degree) {
         super("Teacher");

@@ -1,18 +1,33 @@
 package com.example.isthateasy2.models;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class School implements Serializable {
+    private String TAG = "school";
+
+
+
+    private String name;
     private String id;
     private String headMaster;
     private String location;
-    private String type;
+    private String type="primary";
     private String owner;
     private ArrayList<Level> levels;
     private String contactEmail;
     private String telephone;
-    private String loginPassword;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public void addLevel(Level level){
         if(levels == null)
@@ -22,16 +37,14 @@ public class School implements Serializable {
     public School() {
     }
 
-    public School(String id, String headMaster, String location, String type, String owner, ArrayList<Level> levels, String contactEmail, String telephone, String loginPassword) {
+    public School(String id, String headMaster, String location, String owner, ArrayList<Level> levels, String contactEmail, String telephone) {
         this.id = id;
         this.headMaster = headMaster;
         this.location = location;
-        this.type = type;
         this.owner = owner;
         this.levels = levels;
         this.contactEmail = contactEmail;
         this.telephone = telephone;
-        this.loginPassword = loginPassword;
     }
 
     public String getId() {
@@ -98,11 +111,18 @@ public class School implements Serializable {
         this.telephone = telephone;
     }
 
-    public String getLoginPassword() {
-        return loginPassword;
+    public void createLevels(String lowerLevel, String higherLevel) {
+        int lower = Integer.parseInt(lowerLevel.substring(1));
+        int higher = Integer.parseInt(higherLevel.substring(1));
+        for(int i = lower; i<=higher; i++){
+            addLevel(new Level("P"+i));
+        }
+        Log.d(TAG, "createLevels: " + lower);
     }
 
-    public void setLoginPassword(String loginPassword) {
-        this.loginPassword = loginPassword;
+    public void print() {
+        Log.d(TAG, "print: email "+ getContactEmail());
+        Log.d(TAG, "print: name "+ getName());
+        Log.d(TAG, "print: headMaster "+ getHeadMaster());
     }
 }

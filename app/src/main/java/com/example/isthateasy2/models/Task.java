@@ -131,7 +131,7 @@ public class Task implements Serializable {
 
         this.title = title;
         this.course.setName(courseName);
-        this.teacher.setFirstName(teacherName);
+//        this.teacher.setFirstName(teacherName);
         this.description = description;
 
         questions = new ArrayList<>();
@@ -146,7 +146,7 @@ public class Task implements Serializable {
 
         this.title = title;
         this.course.setName(courseName);
-        this.teacher.setFirstName(teacherName);
+//        this.teacher.setFirstName(teacherName);
         this.description = description;
         this.questions = questions;
         this.id = id;
@@ -234,13 +234,13 @@ public class Task implements Serializable {
     public String getTeacherName() {
         if (teacher == null)
             return null;
-        return this.teacher.getFirstName();
+        return "this.teacher.getFirstName()";
     }
 
     public void setTeacherName(String teacherName) {
         if(this.teacher == null)
             this.teacher = new TeacherUser();
-        this.teacher.setFirstName(teacherName);
+//        this.teacher.setFirstName(teacherName);
     }
 
     public String getDescription() {

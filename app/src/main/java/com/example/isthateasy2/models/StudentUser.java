@@ -21,22 +21,17 @@ public class StudentUser extends User {
     }
 
     public StudentUser() {
+        super("student");
     }
 
     public StudentUser(ArrayList<TaskResult> taskResults, ArrayList<Class_> enrolledClasses, Level level, School school) {
+        super("student");
         this.taskResults = taskResults;
         this.enrolledClasses = enrolledClasses;
         this.level = level;
         this.school = school;
     }
 
-    public StudentUser(String firstName, String secondName, String typeOfUser, ArrayList<TaskResult> taskResults, ArrayList<Class_> enrolledClasses, Level level, School school) {
-        super(firstName, secondName, typeOfUser);
-        this.taskResults = taskResults;
-        this.enrolledClasses = enrolledClasses;
-        this.level = level;
-        this.school = school;
-    }
 
     public StudentUser(String typeOfUser, ArrayList<TaskResult> taskResults, ArrayList<Class_> enrolledClasses, Level level, School school) {
         super(typeOfUser);
