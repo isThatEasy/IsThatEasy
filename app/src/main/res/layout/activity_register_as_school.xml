@@ -3,7 +3,6 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/school_happykids"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,36 +25,6 @@
             app:layout_constraintTop_toBottomOf="@+id/textView10"
             tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
 
-        <Spinner
-            android:id="@+id/courseSpinnerR"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="76dp"
-            android:background="@drawable/input_design_v2"
-            android:entries="@array/courses"
-            android:padding="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.268"
-            app:layout_constraintStart_toEndOf="@+id/textView12"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <EditText
-            android:id="@+id/SchoolOwnerId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/input_design"
-            android:ems="10"
-            android:hint="Owner Name"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:textSize="17sp"
-            android:theme="@style/Theme.IsThatEasy2.P1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.234"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/courseSpinnerR" />
 
         <EditText
             android:id="@+id/SchoolHeadmaster"
@@ -72,9 +41,9 @@
             android:theme="@style/Theme.IsThatEasy2.P1"
             app:layout_constraintBottom_toTopOf="@+id/schoolLevels"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.233"
+            app:layout_constraintHorizontal_bias="0.263"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SchoolOwnerId" />
+            app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
         <TextView
             android:id="@+id/schoolLevels"
@@ -131,32 +100,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/SchoolEmailid" />
 
-        <EditText
-            android:id="@+id/SchoolPasswordId"
-            android:layout_width="249dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:hint="Enter password"
-            android:inputType="textPassword"
-            android:minHeight="48dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SchoolPnoneNumberId"
-            tools:ignore="SpeakableTextPresentCheck" />
-
         <Button
             android:id="@+id/button"
             android:layout_width="183dp"
             android:layout_height="53dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="212dp"
             android:background="@drawable/buttonpfive"
             android:text="Register Now"
             android:textSize="17dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.434"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SchoolPasswordId" />
+            app:layout_constraintTop_toBottomOf="@+id/SchoolPnoneNumberId" />
 
         <TextView
             android:id="@+id/textView10"
@@ -183,17 +138,6 @@
             app:layout_constraintTop_toBottomOf="@+id/schoolLevels" />
 
         <TextView
-            android:id="@+id/textView12"
-            android:layout_width="113dp"
-            android:layout_height="33dp"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="24dp"
-            android:text="Courses"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView17" />
-
-        <TextView
             android:id="@+id/textView17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -201,7 +145,7 @@
             android:layout_marginTop="16dp"
             android:text="Register a School"
             android:textSize="27dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

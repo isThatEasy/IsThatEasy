@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private static final String TAG = "HomePage";
+    private static final String TAG = "HomeFragment";
 
     RecyclerView recyclerView;
     List<com.example.isthateasy2.models.Task> taskList;
@@ -254,7 +254,7 @@ public class HomeFragment extends Fragment {
         try{
             task.setCourse(new Course((Map<String, Object>) map.get("course")));
         }catch (ClassCastException cast){
-            Log.e(TAG, "convertHashMapToTask: casting exception ");
+            Log.e(TAG, "convertHashMapToCourse: "+ cast.toString());
         }
 
 
@@ -262,7 +262,7 @@ public class HomeFragment extends Fragment {
             task.setLevel(new Level((Map<String, Object>)map.get("level")));
         }
         catch (Exception e){
-            Log.e(TAG, "convertHashMapToTask: error occur" );
+            Log.e(TAG, "convertHashMapToLevel:" + e.toString()  );
         }
         task.setChapterName((String)map.get("topic"));
         task.setDescription((String)map.get("description"));

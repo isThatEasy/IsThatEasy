@@ -13,33 +13,46 @@ import android.widget.Toast;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 
-public class LoginChoosingActivity extends AppCompatActivity {
-    Button loginButton;
-    Button RegisterAsSchoolbtn;
-    private String TAG = "RegisterChoosingActivity";
+public class RegisterPickerActivity extends AppCompatActivity {
+    Button continueAsStudent;
+    Button continueAsTeacher;
+    Button continueAsHeadMaster;
+    private String TAG = "RegisterPickerActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_chooosing);
-        loginButton = findViewById(R.id.loginbtn_choosing);
-        RegisterAsSchoolbtn=findViewById(R.id.RegisterAschoolbtn);
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_register_picker);
+        continueAsStudent = findViewById(R.id.continueAsStudent);
+        continueAsTeacher =findViewById(R.id.continueAsTeacher);
+        continueAsHeadMaster = findViewById(R.id.continueAsHeadmaster);
+
+        continueAsStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginChoosingActivity.this, LoginPageActivity.class);
+                Intent intent = new Intent(RegisterPickerActivity.this, RegisterAsStudentActivity.class);
                 startActivity(intent);
 
 
             }
 
         });
-        RegisterAsSchoolbtn.setOnClickListener(new View.OnClickListener() {
+        continueAsTeacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent1 = new Intent(LoginChoosingActivity.this, RegisterAsSchoolActivity.class);
-                startActivity(intent1);
+                Intent intent = new Intent(RegisterPickerActivity.this, RegisterAsTeacherActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
+        continueAsHeadMaster.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(RegisterPickerActivity.this, RegisterAsSchoolActivity.class);
+                startActivity(intent);
 
 
             }
@@ -50,12 +63,12 @@ public class LoginChoosingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AuthUI.getInstance()
-                        .signOut(LoginChoosingActivity.this)
+                        .signOut(RegisterPickerActivity.this)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> task) {
                                 // ...
                                 Log.d(TAG, "onComplete: logout success");
-                                Toast.makeText(LoginChoosingActivity.this, "logout success", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterPickerActivity.this, "logout success", Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                         });

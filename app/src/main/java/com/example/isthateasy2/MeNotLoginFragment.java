@@ -158,8 +158,9 @@ public class MeNotLoginFragment extends Fragment {
                             Log.d(TAG, "onComplete: User exists");
                             S.setUserInfo(document.toObject(User.class));
                         } else {
-                            Intent intent = new Intent(getContext(), LoginChoosingActivity.class);
+                            Intent intent = new Intent(getContext(), RegisterPickerActivity.class);
                             startActivity(intent);
+                            progress.dismiss();
                         }
                     } else {
                         Log.d(TAG, "get failed with ", task.getException());
@@ -178,11 +179,5 @@ public class MeNotLoginFragment extends Fragment {
             // ...
             Log.d(TAG, "onSignInResult: fail");
         }
-    }
-    @Override
-    public void onStop(){
-        super.onStop();
-        if(progress!=null)
-            progress.dismiss();
     }
 }

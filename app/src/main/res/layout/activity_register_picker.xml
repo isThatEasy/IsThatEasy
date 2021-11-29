@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/mainjpg"
-    tools:context=".LoginChoosingActivity">
+    tools:context=".RegisterPickerActivity">
 
     <Button
-        android:id="@+id/loginbtn_choosing"
+        android:id="@+id/continueAsStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="116dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/RegisterAschoolbtn"
+        android:id="@+id/continueAsTeacher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="94dp"
@@ -32,10 +32,10 @@
         android:theme="@style/Theme.IsThatEasy2.Pe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginbtn_choosing" />
+        app:layout_constraintTop_toBottomOf="@+id/continueAsStudent" />
 
     <Button
-        android:id="@+id/RegisterAsTeacher"
+        android:id="@+id/continueAsHeadmaster"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="82dp"
@@ -45,7 +45,7 @@
         android:theme="@style/Theme.IsThatEasy2.Pe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RegisterAschoolbtn" />
+        app:layout_constraintTop_toBottomOf="@+id/continueAsTeacher" />
 
     <TextView
         android:id="@+id/textView3"
