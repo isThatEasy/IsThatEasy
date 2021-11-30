@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.isthateasy2.models.School;
+import com.example.isthateasy2.models.SchoolOwnerUser;
 import com.example.isthateasy2.models.User;
 import com.example.isthateasy2.states.S;
 import com.google.android.gms.tasks.OnCompleteListener;

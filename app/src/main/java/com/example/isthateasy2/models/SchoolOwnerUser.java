@@ -1,4 +1,4 @@
-package com.example.isthateasy2;
+package com.example.isthateasy2.models;
 
 import com.example.isthateasy2.models.School;
 import com.example.isthateasy2.models.User;
