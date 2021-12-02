@@ -15,7 +15,7 @@ public class TeacherUser extends User{
 
 
     public TeacherUser(ArrayList<Class_> aClasses, School school, String degree) {
-        super("Teacher");
+        super("teacher");
         this.aClasses = aClasses;
         this.school = school;
         this.degree = degree;

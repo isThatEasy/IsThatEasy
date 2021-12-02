@@ -18,6 +18,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.isthateasy2.models.SchoolOwnerUser;
+import com.example.isthateasy2.models.StudentUser;
+import com.example.isthateasy2.models.TeacherUser;
 import com.example.isthateasy2.models.User;
 import com.example.isthateasy2.states.S;
 import com.firebase.ui.auth.AuthUI;
@@ -156,7 +159,22 @@ public class MeNotLoginFragment extends Fragment {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
                             Log.d(TAG, "onComplete: User exists");
-                            S.setUserInfo(document.toObject(User.class));
+                            switch ((String) document.getData().get("typeOfUser")){
+                                case "owner":
+                                    S.setUserInfo(document.toObject(SchoolOwnerUser.class));
+                                    break;
+                                case "student":
+                                    S.setUserInfo(document.toObject(StudentUser.class));
+                                    break;
+                                case "teacher":
+                                    S.setUserInfo(document.toObject(TeacherUser.class));
+                                default:
+                                    S.setUserInfo(document.toObject(User.class));
+                            }
+
+
+                            Intent intent = new Intent(getContext(), HomeActivity.class);
+                            startActivity(intent);
                         } else {
                             Intent intent = new Intent(getContext(), RegisterPickerActivity.class);
                             startActivity(intent);

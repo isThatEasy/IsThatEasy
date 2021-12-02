@@ -8,8 +8,10 @@ package com.example.isthateasy2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +26,7 @@ import com.example.isthateasy2.models.User;
 import com.example.isthateasy2.states.S;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -100,19 +103,39 @@ EditText schoolHeadmaster, schoolEmailid, schoolPnoneNumberId, schoolLocation, s
     }
 
     private void saveToFirebase(School school) {
+        S.startProgress(RegisterAsSchoolActivity.this);
+
         S.getDb().collection("schools")
                 .add(school)
                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                    @Override
                    public void onComplete(@NonNull Task<DocumentReference> task) {
-                       Toast.makeText(RegisterAsSchoolActivity.this, "successfully saved", Toast.LENGTH_SHORT).show();
-                       Intent intent = new Intent(RegisterAsSchoolActivity.this, HomeActivity.class);
-                       startActivity(intent);
+                       S.getDb().collection("users").document(S.getUser().getUid())
+                               .set(S.getUserInfo())
+                               .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                   @Override
+                                   public void onSuccess(Void aVoid) {
+                                       Log.d(TAG, "DocumentSnapshot successfully written!");
+                                       Intent intent = new Intent(RegisterAsSchoolActivity.this, HomeActivity.class);
+                                       startActivity(intent);
+                                       S.stopProgress();
+                                   }
+                               })
+                               .addOnFailureListener(new OnFailureListener() {
+                                   @Override
+                                   public void onFailure(@NonNull Exception e) {
+                                       S.stopProgress();
+                                       Log.w(TAG, "Error writing document", e);
+                                   }
+                               });
+
+
                    }
                })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        S.stopProgress();
                         Toast.makeText(RegisterAsSchoolActivity.this, "fail to save", Toast.LENGTH_SHORT).show();
                     }
                 });
